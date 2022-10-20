@@ -1,0 +1,24 @@
+{
+  "select-columns.qmd": {
+    "select-columns.tex": "5187f1b6",
+    "select-columns.html": "a490d541"
+  },
+  "add-columns.qmd": {
+    "add-columns.tex": "8b470861"
+  },
+  "filter-rows.qmd": {
+    "filter-rows.tex": "3b9bf741"
+  },
+  "data-transformation/add-columns.qmd": {
+    "add-columns.tex": "be3da43e"
+  },
+  "data-transformation/filter-rows.qmd": {
+    "filter-rows.tex": "86a49acb"
+  },
+  "data-transformation/select-columns.qmd": {
+    "select-columns.tex": "00604a93"
+  },
+  "data-loading/load-from-csv.qmd": {
+    "load-from-csv.tex": "59140ada"
+  }
+}

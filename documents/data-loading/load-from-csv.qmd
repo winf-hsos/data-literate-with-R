@@ -1,0 +1,16 @@
+---
+title: "Load data from CSV files"
+---
+```{r}
+#| echo: false
+library(tidyverse)
+library(here)
+```
+
+
+```{r}
+orders <- read_csv(here("data", "orders.csv"))
+
+orders
+```
+
