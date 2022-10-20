@@ -1,1 +1,3 @@
 # Preface {.unnumbered}
+
+You can download the ZIP archive with all material [here](data-literate-with-R.zip).
