@@ -138,4 +138,4 @@ zip("../data-literate-with-R.zip",
 setwd(here())
 
 # Copy ZIP to book for deployment
-file.copy("data-literate-with-R.zip", "_book/")
+file.copy("data-literate-with-R.zip", "_book/", overwrite = TRUE)
