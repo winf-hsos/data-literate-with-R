@@ -1,0 +1,20 @@
+lang: en
+author: Prof. Dr. Nicolas Meseth
+
+format:
+
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+    documentclass: scrartcl
+    
+  html:
+    toc: false
+    html-math-method: katex
+    code-link: true
+    
+execute:
+  cache: false
+  output: true
+  warning: false

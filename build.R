@@ -8,13 +8,24 @@ wd <- getwd()
 # Create output directories ####
 unlink("output", recursive = TRUE)
 dir.create("output")
+
 dir.create("output/data")
 dir.create("output/scripts")
+
+# Docs output folder
 dir.create("output/docs")
 dir.create("output/docs/basics")
 dir.create("output/docs/data-loading")
 dir.create("output/docs/data-transformation")
 dir.create("output/docs/data-visualization")
+
+# Exercises output folder
+dir.create("output/exercises")
+dir.create("output/exercises/basics")
+dir.create("output/exercises/data-loading")
+dir.create("output/exercises/data-transformation")
+dir.create("output/exercises/data-visualization")
+
 dir.create("output/book")
 dir.create("output/slides")
 
@@ -25,6 +36,15 @@ quarto_render(qmd_list, output_format = "pdf")
 # Copy .pdf files
 pdf_list <- list.files("documents", ".pdf", full.names = TRUE, recursive = TRUE)
 pdf_dest_list <- gsub("documents/", "output/docs/", pdf_list)
+file.copy(pdf_list, pdf_dest_list, overwrite = TRUE)
+
+# Render exercises to PDF
+qmd_list <- list.files("exercises", ".qmd", full.names = TRUE, recursive = TRUE)
+quarto_render(qmd_list, output_format = "pdf")
+
+# Copy .pdf files
+pdf_list <- list.files("exercises", ".pdf", full.names = TRUE, recursive = TRUE)
+pdf_dest_list <- gsub("exercises/", "output/exercises/", pdf_list)
 file.copy(pdf_list, pdf_dest_list, overwrite = TRUE)
 
 # Copy .R files
@@ -59,6 +79,46 @@ quarto_render("index.qmd")
 # Copy the book as PDF
 file.copy("_book/Data-Literate-with-R.pdf", "output/book")
 
+# Download and save Google Slides ####
+library(httr)
+
+#install.packages("pdftools")
+library(pdftools)
+
+url <- "https://docs.google.com/presentation/d/1HLRd41yePsS4DDA1bHMLoqv3fdHkOH4lIG2SpPFH1ME/export?format=pdf"
+slidedeck <- GET(url, write_disk("slides/test.pdf", overwrite=TRUE))
+slidedeck
+
+
+
+library(yaml)
+slides_yaml <- read_yaml("slides/slides.yml")
+
+# Remove all slides
+unlink("slides/*.pdf")
+
+for (i in 1:length(slides_yaml$slides)) { 
+
+  # Save temporary
+  url <- paste0("https://docs.google.com/presentation/d/", slides_yaml$slides[i], "/export?format=pdf")
+  
+  print(url)
+  
+  slidedeck <- GET(url, write_disk("slides/tmp.pdf", overwrite=TRUE))
+
+  # Rename
+  slide_infos <- pdf_info("slides/tmp.pdf")
+  slide_title <- slide_infos$keys$Title
+  
+  file.rename("slides/tmp.pdf", paste0("slides/", slide_title, ".pdf"))
+ 
+}
+
+# Copy the slides pdf files
+# Copy .R files
+slides_list <- list.files("slides", ".pdf", full.names = TRUE, recursive = TRUE)
+file.copy(slides_list, "output/slides", overwrite = TRUE)
+
 # Create ZIP file ####
 setwd(here("output"))
 
@@ -71,6 +131,7 @@ zip("../data-literate-with-R.zip",
       "data/",
       "docs/",
       "scripts/",
+      "exercises/",
       "slides/"
       ))
 
