@@ -11,6 +11,10 @@ dir.create("output")
 
 dir.create("output/data")
 dir.create("output/scripts")
+dir.create("output/scripts/basics")
+dir.create("output/scripts/data-loading")
+dir.create("output/scripts/data-transformation")
+dir.create("output/scripts/data-visualization")
 
 # Docs output folder
 dir.create("output/docs")
@@ -29,6 +33,8 @@ dir.create("output/exercises/data-visualization")
 dir.create("output/book")
 dir.create("output/slides")
 
+print("Created output directories...")
+
 # Render single documents to PDF
 qmd_list <- list.files("documents", ".qmd", full.names = TRUE, recursive = TRUE)
 quarto_render(qmd_list, output_format = "pdf")
@@ -37,6 +43,8 @@ quarto_render(qmd_list, output_format = "pdf")
 pdf_list <- list.files("documents", ".pdf", full.names = TRUE, recursive = TRUE)
 pdf_dest_list <- gsub("documents/", "output/docs/", pdf_list)
 file.copy(pdf_list, pdf_dest_list, overwrite = TRUE)
+
+print("Rendered and copied PDF documents...")
 
 # Render exercises to PDF
 qmd_list <- list.files("exercises", ".qmd", full.names = TRUE, recursive = TRUE)
@@ -49,7 +57,8 @@ file.copy(pdf_list, pdf_dest_list, overwrite = TRUE)
 
 # Copy .R files
 r_list <- list.files("scripts", ".R", full.names = TRUE, recursive = TRUE)
-file.copy(r_list, "output/scripts", overwrite = TRUE)
+r_dest_list <- gsub("scripts/", "output/scripts/", r_list)
+file.copy(r_dest_list, r_dest_list, overwrite = TRUE)
 
 # Copy the data files #### 
 data_list <- list.files("data", ".csv", full.names = TRUE, recursive = TRUE)

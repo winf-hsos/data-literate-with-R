@@ -1,3 +1,12 @@
 # Preface {.unnumbered}
 
-You can download the ZIP archive with all material [here](data-literate-with-R.zip).
+## Download materials
+
+You can download the ZIP-archive with all material [here](data-literate-with-R.zip). This archive includes:
+
+- All chapters as single PDF files
+- All exercises as PDF files (sometimes with solutions)
+- All code from the chapters as plain R-Scripts (`.R`)
+- All data from the chapters
+- The compiled book in PDF format
+- A collection of slide decks in PDF format
