@@ -12,7 +12,7 @@ library(here)
 orders <- read_csv(here("data", "orders.csv"))
 ```
 
-# By names
+## By names
 
 ```{r}
 orders %>% 
@@ -20,7 +20,7 @@ orders %>%
 ```
 
 
-# By data type
+## By data type
 
 ```{r}
 orders %>% 
