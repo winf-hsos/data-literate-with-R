@@ -1,3 +1,49 @@
 ---
 title: "Select columns"
+execute: 
+  warning: false
 ---
+```{r}
+#| echo: false
+#| output: false
+#| warning: false
+library(tidyverse)
+library(here)
+orders <- read_csv(here("data", "orders.csv"))
+```
+
+# By names
+
+```{r}
+orders %>% 
+  select(order_id, total_price)
+```
+
+
+# By data type
+
+```{r}
+orders %>% 
+  select(where(is.numeric))
+
+orders %>% 
+  select(where(is.logical))
+
+orders %>% 
+  select(where(is.character))
+
+orders %>% 
+  select(where(is.factor))
+
+orders %>% 
+  select(where(is.list))
+
+# The package lubridate provides a function to check for date (without time)
+orders %>% 
+  select(where(lubridate::is.Date))
+
+# Select all date/time columns
+orders %>% 
+  select(where(lubridate::is.POSIXct))
+```
+

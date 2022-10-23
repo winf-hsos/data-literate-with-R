@@ -8,7 +8,7 @@ orders <- read_csv("data/orders.csv")
 
 # 1. Select columns by name ####
 
-# Listing the column names
+# By listing the column names
 orders %>% 
   select(order_id, total_price)
 

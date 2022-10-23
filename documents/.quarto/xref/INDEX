@@ -16,7 +16,8 @@
     "filter-rows.tex": "86a49acb"
   },
   "data-transformation/select-columns.qmd": {
-    "select-columns.tex": "00604a93"
+    "select-columns.tex": "00604a93",
+    "select-columns.html": "7c1a3ee8"
   },
   "data-loading/load-from-csv.qmd": {
     "load-from-csv.tex": "59140ada"

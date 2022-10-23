@@ -1,0 +1,20 @@
+{
+  "hash": "e110b5e889ba2d061a81746012b31753",
+  "result": {
+    "markdown": "---\ntitle: \"Select columns\"\nexecute: \n  warning: false\n---\n\n::: {.cell}\n\n:::\n\n\n# Choose columns by name\n\n\n::: {.cell}\n\n```{.r .cell-code}\norders %>% \n  select(order_id, total_price)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 2,874 x 2\n        order_id total_price\n           <dbl>       <dbl>\n 1 1130007101519        94.7\n 2 1130014965839        32.2\n 3 1130026958927        30.2\n 4 1130030563407        32.2\n 5 1130038853711        30.2\n 6 1130045964367        30.2\n 7 1130050519119        30.2\n 8 1130060283983        32.2\n 9 1130102194255        96.7\n10 1130106880079        32.2\n# ... with 2,864 more rows\n```\n:::\n:::\n",
+    "supporting": [
+      "select-columns_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

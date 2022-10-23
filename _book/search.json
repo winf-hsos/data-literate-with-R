@@ -1,9 +1,0 @@
-[
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Literate with R",
-    "section": "",
-    "text": "You can download the ZIP-archive with all material here. This archive includes:\n\n\n\nFolder\nContent\n\n\n\n\nbook\nThe compiled book in PDF format\n\n\ndata\nAll data from the chapters\n\n\ndocs\nAll chapters as single PDF files\n\n\nexercises\nAll exercises as PDF files (sometimes with solutions)\n\n\nscripts\nAll code from the chapters as plain R-Scripts (.R)\n\n\nslides\nA collection of slide decks in PDF format"
-  }
-]
