@@ -1,0 +1,7 @@
+---
+title: "Five steps in data transformation"
+---
+
+Data is the new oil, according to XY. If we take this analogy seriously, the data - like oil - needs to be refined to turn it into something of value.
+
+

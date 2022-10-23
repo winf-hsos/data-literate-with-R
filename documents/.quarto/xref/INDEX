@@ -21,5 +21,8 @@
   },
   "data-loading/load-from-csv.qmd": {
     "load-from-csv.tex": "59140ada"
+  },
+  "data-transformation/steps-in-data-transformation.qmd": {
+    "steps-in-data-transformation.tex": "fc1c9072"
   }
 }
