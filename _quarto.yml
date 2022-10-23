@@ -13,10 +13,14 @@ book:
   toc-depth: 1
   chapters:
     - index.qmd
-    - documents/data-transformation/select-columns.qmd
-    - documents/data-transformation/filter-rows.qmd
-    - documents/data-transformation/add-columns.qmd
     
+    - part: book-parts/data-transformation.qmd
+      chapters:
+      - documents/data-transformation/steps-in-data-transformation.qmd
+      - documents/data-transformation/select-columns.qmd
+      - documents/data-transformation/filter-rows.qmd
+      - documents/data-transformation/add-columns.qmd
+      
 format:
   html:
     theme: cosmo

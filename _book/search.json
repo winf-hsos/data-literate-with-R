@@ -7,10 +7,24 @@
     "text": "You can download the ZIP-archive with all material here. This archive includes:\n\n\n\nFolder\nContent\n\n\n\n\nbook\nThe compiled book in PDF format\n\n\ndata\nAll data from the chapters\n\n\ndocs\nAll chapters as single PDF files\n\n\nexercises\nAll exercises as PDF files (sometimes with solutions)\n\n\nscripts\nAll code from the chapters as plain R-Scripts (.R)\n\n\nslides\nA collection of slide decks in PDF format"
   },
   {
+    "objectID": "book-parts/data-transformation.html",
+    "href": "book-parts/data-transformation.html",
+    "title": "Data Transformation",
+    "section": "",
+    "text": "This part introduces the basic tools for data transformation with R."
+  },
+  {
+    "objectID": "documents/data-transformation/steps-in-data-transformation.html",
+    "href": "documents/data-transformation/steps-in-data-transformation.html",
+    "title": "1  Five steps in data transformation",
+    "section": "",
+    "text": "Data is the new oil, according to XY. If we take this analogy seriously, the data - like oil - needs to be refined to turn it into something of value."
+  },
+  {
     "objectID": "documents/data-transformation/select-columns.html#by-names",
     "href": "documents/data-transformation/select-columns.html#by-names",
-    "title": "1  Select columns",
-    "section": "1.1 By names",
-    "text": "1.1 By names\n\norders %>% \n  select(order_id, total_price)\n\n# A tibble: 2,874 x 2\n        order_id total_price\n           <dbl>       <dbl>\n 1 1130007101519        94.7\n 2 1130014965839        32.2\n 3 1130026958927        30.2\n 4 1130030563407        32.2\n 5 1130038853711        30.2\n 6 1130045964367        30.2\n 7 1130050519119        30.2\n 8 1130060283983        32.2\n 9 1130102194255        96.7\n10 1130106880079        32.2\n# ... with 2,864 more rows"
+    "title": "2  Select columns",
+    "section": "2.1 By names",
+    "text": "2.1 By names\n\norders %>% \n  select(order_id, total_price)\n\n# A tibble: 2,874 x 2\n        order_id total_price\n           <dbl>       <dbl>\n 1 1130007101519        94.7\n 2 1130014965839        32.2\n 3 1130026958927        30.2\n 4 1130030563407        32.2\n 5 1130038853711        30.2\n 6 1130045964367        30.2\n 7 1130050519119        30.2\n 8 1130060283983        32.2\n 9 1130102194255        96.7\n10 1130106880079        32.2\n# ... with 2,864 more rows"
   }
 ]
