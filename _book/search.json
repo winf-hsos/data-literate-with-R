@@ -14,9 +14,9 @@
     "text": "This part introduces the basic tools for data transformation with R."
   },
   {
-    "objectID": "documents/data-transformation/steps-in-data-transformation.html",
-    "href": "documents/data-transformation/steps-in-data-transformation.html",
-    "title": "1  Five steps in data transformation",
+    "objectID": "documents/data-transformation/data-transformation-operations.html",
+    "href": "documents/data-transformation/data-transformation-operations.html",
+    "title": "1  Transformation Operations",
     "section": "",
     "text": "Data is the new oil, according to XY. If we take this analogy seriously, the data - like oil - needs to be refined to turn it into something of value."
   },
