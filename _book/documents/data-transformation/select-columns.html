@@ -210,13 +210,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#select-columns" id="toc-select-columns" class="nav-link active" data-scroll-target="#select-columns"><span class="toc-section-number">3</span>  Select columns</a>
-  <ul class="collapse">
-<li><a href="#the-select-command" id="toc-the-select-command" class="nav-link" data-scroll-target="#the-select-command"><span class="toc-section-number">3.1</span>  The <code>select</code> command</a></li>
-  <li><a href="#by-column-names" id="toc-by-column-names" class="nav-link" data-scroll-target="#by-column-names"><span class="toc-section-number">3.2</span>  By column names</a></li>
+<li><a href="#the-select-command" id="toc-the-select-command" class="nav-link active" data-scroll-target="#the-select-command"><span class="toc-section-number">2.1</span>  The <code>select</code> command</a></li>
+  <li><a href="#by-column-names" id="toc-by-column-names" class="nav-link" data-scroll-target="#by-column-names"><span class="toc-section-number">2.2</span>  By column names</a></li>
   <li>
-<a href="#by-name-patterns" id="toc-by-name-patterns" class="nav-link" data-scroll-target="#by-name-patterns"><span class="toc-section-number">3.3</span>  By name patterns</a>
+<a href="#by-name-patterns" id="toc-by-name-patterns" class="nav-link" data-scroll-target="#by-name-patterns"><span class="toc-section-number">2.3</span>  By name patterns</a>
   <ul class="collapse">
 <li><a href="#names-starting-with-a-string" id="toc-names-starting-with-a-string" class="nav-link" data-scroll-target="#names-starting-with-a-string">Names starting with a string</a></li>
   <li><a href="#names-ending-with-a-string" id="toc-names-ending-with-a-string" class="nav-link" data-scroll-target="#names-ending-with-a-string">Names ending with a string</a></li>
@@ -224,9 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#using-regular-expressions" id="toc-using-regular-expressions" class="nav-link" data-scroll-target="#using-regular-expressions">Using regular expressions</a></li>
   </ul>
 </li>
-  <li><a href="#by-data-type" id="toc-by-data-type" class="nav-link" data-scroll-target="#by-data-type"><span class="toc-section-number">3.4</span>  By data type</a></li>
-  </ul>
-</li>
+  <li><a href="#by-data-type" id="toc-by-data-type" class="nav-link" data-scroll-target="#by-data-type"><span class="toc-section-number">2.4</span>  By data type</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -248,36 +243,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header><div class="cell">
 
 </div>
-<section id="select-columns" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> Select columns</h1>
 <p>This chapter introduces tools to remove unnecessary columns from the data set. Or, if stated in a positive manner, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the <a href="https://dplyr.tidyverse.org">dplyr</a> package.</p>
-<section id="the-select-command" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="the-select-command">
-<span class="header-section-number">3.1</span> The <code>select</code> command</h2>
+<section id="the-select-command" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="the-select-command">
+<span class="header-section-number">2.1</span> The <code>select</code> command</h2>
 <p>The function <code>select()</code> is the designated tool to select columns with <a href="https://dplyr.tidyverse.org">dplyr</a>. By passing different things to the function, we can efficiently define the set of columns in the resulting data frame.</p>
-</section><section id="by-column-names" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="by-column-names">
-<span class="header-section-number">3.2</span> By column names</h2>
+</section><section id="by-column-names" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="by-column-names">
+<span class="header-section-number">2.2</span> By column names</h2>
 <p>The easiest and intuitive way to specify the columns we want is by listing their names. We can pass one or more column names to the <code>select()</code> function. In case of two or more, we use commas to separate the names:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Just one column name</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">order_id</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 1
-        order_id
-           &lt;dbl&gt;
- 1 1130007101519
- 2 1130014965839
- 3 1130026958927
- 4 1130030563407
- 5 1130038853711
- 6 1130045964367
- 7 1130050519119
- 8 1130060283983
- 9 1130102194255
-10 1130106880079
-# ... with 2,864 more rows</code></pre>
-</div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#&gt; # A tibble: 2,874 x 1</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">order_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 2,874 x 1</span></span>
 <span><span class="co">#&gt;        order_id</span></span>
 <span><span class="co">#&gt;           &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 1130007101519</span></span>
@@ -287,24 +265,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span></span>
 <span><span class="co"># A list of column names</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">order_id</span>, <span class="va">total_price</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 2
-        order_id total_price
-           &lt;dbl&gt;       &lt;dbl&gt;
- 1 1130007101519        94.7
- 2 1130014965839        32.2
- 3 1130026958927        30.2
- 4 1130030563407        32.2
- 5 1130038853711        30.2
- 6 1130045964367        30.2
- 7 1130050519119        30.2
- 8 1130060283983        32.2
- 9 1130102194255        96.7
-10 1130106880079        32.2
-# ... with 2,864 more rows</code></pre>
-</div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#&gt; # A tibble: 2,874 x 2</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">order_id</span>, <span class="va">total_price</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 2,874 x 2</span></span>
 <span><span class="co">#&gt;        order_id total_price</span></span>
 <span><span class="co">#&gt;           &lt;dbl&gt;       &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 1130007101519        94.7</span></span>
@@ -313,135 +276,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When we only want a few columns, this approach works fine and is usually a good choice. I expect you apply this method in more than 90% of all cases. However, there are cases when you’d wish there was something more flexible. Luckily, there is.</p>
-</section><section id="by-name-patterns" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="by-name-patterns">
-<span class="header-section-number">3.3</span> By name patterns</h2>
+</section><section id="by-name-patterns" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="by-name-patterns">
+<span class="header-section-number">2.3</span> By name patterns</h2>
 <section id="names-starting-with-a-string" class="level3"><h3 class="anchored" data-anchor-id="names-starting-with-a-string">Names starting with a string</h3>
 <p>Sometimes we want to select columns based on a pattern of their names. Take the orders data set as an example. Here, all variables that contain information about the shipping address have the prefix <code>shipping</code>. We leverage this with the helper function <code>starts_with()</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"shipping"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "shipping_address_city"      "shipping_address_zip"      
-[3] "shipping_address_country"   "shipping_address_latitude" 
-[5] "shipping_address_longitude"</code></pre>
-</div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#&gt; [1] "shipping_address_city"      "shipping_address_zip"       "shipping_address_country"  </span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; [1] "shipping_address_city"      "shipping_address_zip"       "shipping_address_country"  </span></span>
 <span><span class="co">#&gt; [4] "shipping_address_latitude"  "shipping_address_longitude"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="names-ending-with-a-string" class="level3"><h3 class="anchored" data-anchor-id="names-ending-with-a-string">Names ending with a string</h3>
 </section><section id="names-with-a-string-anywhere" class="level3"><h3 class="anchored" data-anchor-id="names-with-a-string-anywhere">Names with a string anywhere</h3>
 </section><section id="using-regular-expressions" class="level3"><h3 class="anchored" data-anchor-id="using-regular-expressions">Using regular expressions</h3>
-</section></section><section id="by-data-type" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="by-data-type">
-<span class="header-section-number">3.4</span> By data type</h2>
+</section></section><section id="by-data-type" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="by-data-type">
+<span class="header-section-number">2.4</span> By data type</h2>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 30
-        order_id order_~1 app_id curre~2 curre~3 curre~4 curre~5 total~6 total~7
-           &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 1130007101519     1014 580111    94.7    94.7       2       0       2    96.7
- 2 1130014965839     1015 580111    32.2    32.2       0       0       0    32.2
- 3 1130026958927     1016 580111    30.2    30.2       2       0       2    32.2
- 4 1130030563407     1017 580111    32.2    32.2       0       0       0    32.2
- 5 1130038853711     1018 580111    30.2    30.2       2       0       2    32.2
- 6 1130045964367     1019 580111    30.2    30.2       2       0       2    32.2
- 7 1130050519119     1020 580111    30.2    30.2       2       0       2    32.2
- 8 1130060283983     1021 580111    32.2    32.2       0       0       0    32.2
- 9 1130102194255     1022 580111    96.7    96.7       0       0       0    96.7
-10 1130106880079     1023 580111    32.2    32.2       0       0       0    32.2
-# ... with 2,864 more rows, 21 more variables: total_outstanding &lt;dbl&gt;,
-#   total_price &lt;dbl&gt;, total_tax &lt;dbl&gt;, total_tip_received &lt;dbl&gt;,
-#   location_id &lt;dbl&gt;, customer_id &lt;dbl&gt;, customer_accepts_marketing &lt;dbl&gt;,
-#   customer_is_hsos &lt;dbl&gt;, customer_orders_count &lt;dbl&gt;,
-#   customer_total_spent &lt;dbl&gt;, customer_last_order_id &lt;dbl&gt;,
-#   customer_verified_email &lt;dbl&gt;, customer_tax_exempt &lt;dbl&gt;,
-#   shipping_address_zip &lt;dbl&gt;, shipping_address_latitude &lt;dbl&gt;, ...</code></pre>
-</div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.logical</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 3
-   test  taxes_included customer_sms_marketing_consent
-   &lt;lgl&gt; &lt;lgl&gt;          &lt;lgl&gt;                         
- 1 FALSE TRUE           NA                            
- 2 FALSE TRUE           NA                            
- 3 FALSE TRUE           NA                            
- 4 FALSE TRUE           NA                            
- 5 FALSE TRUE           NA                            
- 6 FALSE TRUE           NA                            
- 7 FALSE TRUE           NA                            
- 8 FALSE TRUE           NA                            
- 9 FALSE TRUE           NA                            
-10 FALSE TRUE           NA                            
-# ... with 2,864 more rows</code></pre>
-</div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 27
-   name  discount_~1 finan~2 fulfi~3 sourc~4 landi~5 landi~6 note  tags  proce~7
-   &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
- 1 B1014 DCBPXGJB1J~ paid    fulfil~ web     /passw~ &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  direct 
- 2 B1015 &lt;NA&gt;        paid    fulfil~ web     /walle~ &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
- 3 B1016 KY0D5MNEZB~ paid    fulfil~ web     /       &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
- 4 B1017 &lt;NA&gt;        paid    fulfil~ web     /walle~ &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
- 5 B1018 DCBPXGJB1J~ paid    fulfil~ web     &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
- 6 B1019 DCBPXGJB1J~ paid    fulfil~ web     &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
- 7 B1020 DCBPXGJB1J~ paid    fulfil~ web     &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
- 8 B1021 &lt;NA&gt;        paid    fulfil~ web     /       &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
- 9 B1022 &lt;NA&gt;        paid    fulfil~ web     /walle~ &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
-10 B1023 &lt;NA&gt;        paid    fulfil~ web     &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  express
-# ... with 2,864 more rows, 17 more variables: payment_details_gateway &lt;chr&gt;,
-#   payment_details_credit_card_company &lt;chr&gt;,
-#   customer_marketing_opt_in_level &lt;chr&gt;, customer_gender &lt;chr&gt;,
-#   customer_state &lt;chr&gt;, customer_note &lt;chr&gt;, customer_tags &lt;chr&gt;,
-#   customer_last_order_name &lt;chr&gt;, campaign_tag &lt;chr&gt;,
-#   shipping_address_city &lt;chr&gt;, shipping_address_country &lt;chr&gt;,
-#   billing_address_city &lt;chr&gt;, billing_address_country &lt;chr&gt;, ...</code></pre>
-</div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 0</code></pre>
-</div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.list</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 0</code></pre>
-</div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The package lubridate provides a function to check for date (without time)</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/date_utils.html">is.Date</a></span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 0</code></pre>
-</div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Select all date/time columns</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.logical</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.list</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># The package lubridate provides a function to check for date (without time)</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/date_utils.html">is.Date</a></span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Select all date/time columns</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/posix_utils.html">is.POSIXct</a></span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,874 x 8
-   created_at          updated_at          processed_at       
-   &lt;dttm&gt;              &lt;dttm&gt;              &lt;dttm&gt;             
- 1 2019-05-24 12:59:16 2019-06-19 13:23:26 2019-05-24 12:59:15
- 2 2019-05-24 13:09:08 2019-06-21 14:40:07 2019-05-24 13:09:07
- 3 2019-05-24 13:22:41 2019-06-21 12:35:23 2019-05-24 13:22:40
- 4 2019-05-24 13:27:43 2019-06-21 14:27:18 2019-05-24 13:27:42
- 5 2019-05-24 13:36:46 2019-06-21 12:11:57 2019-05-24 13:36:45
- 6 2019-05-24 13:44:41 2019-06-21 14:37:21 2019-05-24 13:44:41
- 7 2019-05-24 13:49:21 2019-06-21 12:25:16 2019-05-24 13:49:20
- 8 2019-05-24 13:59:57 2019-06-21 11:49:47 2019-05-24 13:59:57
- 9 2019-05-24 14:43:53 2019-06-19 14:12:38 2019-05-24 14:43:53
-10 2019-05-24 14:48:16 2019-06-21 15:54:24 2019-05-24 14:48:16
-# ... with 2,864 more rows, and 5 more variables:
-#   customer_accepts_marketing_updated_at &lt;dttm&gt;, customer_created_at &lt;dttm&gt;,
-#   customer_updated_at &lt;dttm&gt;, cancelled_at &lt;dttm&gt;, closed_at &lt;dttm&gt;</code></pre>
-</div>
 </div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

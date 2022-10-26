@@ -15,8 +15,6 @@ library(here)
 orders <- read_csv(here("data", "orders.csv"))
 ```
 
-# Select columns 
-
 This chapter introduces tools to remove unnecessary columns from the data set. Or, if stated in a positive manner, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the `{dplyr}` package.
 
 ## The `select` command
