@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.1.251">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Data Literate with R - 2&nbsp; Select columns</title>
+<title>Data Literate with R - 7&nbsp; Select columns</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -124,7 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">
-<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Select columns</span>
+<span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Select columns</span>
 </h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../book-parts/data-transformation.html" class="sidebar-item-text sidebar-link">Data Transformation</a>
+            <a href="../../book-parts/data-loading.html" class="sidebar-item-text sidebar-link">Data Loading</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -159,39 +159,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Operations</span></a>
+  <a href="../../documents/data-loading/load-from-csv.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">From CSV files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/select-columns.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Select columns</span></a>
+  <a href="../../documents/data-loading/load-from-excel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">From Excel files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/filter-rows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Filter rows</span></a>
+  <a href="../../documents/data-loading/load-from-rds.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">From RDS files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/add-columns.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Add columns</span></a>
+  <a href="../../documents/data-loading/load-from-google-spreadsheets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">From Google Spreadsheets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/summarize-rows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summarize rows</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/sort-rows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sort rows</span></a>
+  <a href="../../documents/data-loading/load-from-json.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">From JSON files</span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../book-parts/data-visualization.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+            <a href="../../book-parts/data-transformation.html" class="sidebar-item-text sidebar-link">Data Transformation</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -199,7 +194,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-visualization/data-visualization-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Overview</span></a>
+  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../documents/data-transformation/select-columns.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Select columns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../documents/data-transformation/filter-rows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Filter rows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../documents/data-transformation/add-columns.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Add columns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../documents/data-transformation/summarize-rows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summarize rows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../documents/data-transformation/sort-rows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sort rows</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../book-parts/data-visualization.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../documents/data-visualization/data-visualization-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../documents/data-visualization/pleas-for-data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Pleas for data visualization</span></a>
   </div>
 </li>
       </ul>
@@ -210,10 +250,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#the-select-command" id="toc-the-select-command" class="nav-link active" data-scroll-target="#the-select-command"><span class="toc-section-number">2.1</span>  The <code>select</code> command</a></li>
-  <li><a href="#by-column-names" id="toc-by-column-names" class="nav-link" data-scroll-target="#by-column-names"><span class="toc-section-number">2.2</span>  By column names</a></li>
+<li><a href="#the-select-command" id="toc-the-select-command" class="nav-link active" data-scroll-target="#the-select-command"><span class="toc-section-number">7.1</span>  The <code>select</code> command</a></li>
+  <li><a href="#by-column-names" id="toc-by-column-names" class="nav-link" data-scroll-target="#by-column-names"><span class="toc-section-number">7.2</span>  By column names</a></li>
   <li>
-<a href="#by-name-patterns" id="toc-by-name-patterns" class="nav-link" data-scroll-target="#by-name-patterns"><span class="toc-section-number">2.3</span>  By name patterns</a>
+<a href="#by-name-patterns" id="toc-by-name-patterns" class="nav-link" data-scroll-target="#by-name-patterns"><span class="toc-section-number">7.3</span>  By name patterns</a>
   <ul class="collapse">
 <li><a href="#names-starting-with-a-string" id="toc-names-starting-with-a-string" class="nav-link" data-scroll-target="#names-starting-with-a-string">Names starting with a string</a></li>
   <li><a href="#names-ending-with-a-string" id="toc-names-ending-with-a-string" class="nav-link" data-scroll-target="#names-ending-with-a-string">Names ending with a string</a></li>
@@ -221,13 +261,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#using-regular-expressions" id="toc-using-regular-expressions" class="nav-link" data-scroll-target="#using-regular-expressions">Using regular expressions</a></li>
   </ul>
 </li>
-  <li><a href="#by-data-type" id="toc-by-data-type" class="nav-link" data-scroll-target="#by-data-type"><span class="toc-section-number">2.4</span>  By data type</a></li>
+  <li><a href="#by-data-type" id="toc-by-data-type" class="nav-link" data-scroll-target="#by-data-type"><span class="toc-section-number">7.4</span>  By data type</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block">
-<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Select columns</span>
+<span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Select columns</span>
 </h1>
 </div>
 
@@ -243,12 +283,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header><div class="cell">
 
 </div>
-<p>This chapter introduces tools to remove unnecessary columns from the data set. Or, if stated in a positive manner, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the <a href="https://dplyr.tidyverse.org">dplyr</a> package.</p>
-<section id="the-select-command" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="the-select-command">
-<span class="header-section-number">2.1</span> The <code>select</code> command</h2>
+<p>This chapter introduces tools to remove unnecessary columns from the data set. Or, positively stated, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the <a href="https://dplyr.tidyverse.org">dplyr</a> package.</p>
+<section id="the-select-command" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="the-select-command">
+<span class="header-section-number">7.1</span> The <code>select</code> command</h2>
 <p>The function <code>select()</code> is the designated tool to select columns with <a href="https://dplyr.tidyverse.org">dplyr</a>. By passing different things to the function, we can efficiently define the set of columns in the resulting data frame.</p>
-</section><section id="by-column-names" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="by-column-names">
-<span class="header-section-number">2.2</span> By column names</h2>
+</section><section id="by-column-names" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="by-column-names">
+<span class="header-section-number">7.2</span> By column names</h2>
 <p>The easiest and intuitive way to specify the columns we want is by listing their names. We can pass one or more column names to the <code>select()</code> function. In case of two or more, we use commas to separate the names:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Just one column name</span></span>
@@ -276,8 +316,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When we only want a few columns, this approach works fine and is usually a good choice. I expect you apply this method in more than 90% of all cases. However, there are cases when you’d wish there was something more flexible. Luckily, there is.</p>
-</section><section id="by-name-patterns" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="by-name-patterns">
-<span class="header-section-number">2.3</span> By name patterns</h2>
+</section><section id="by-name-patterns" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="by-name-patterns">
+<span class="header-section-number">7.3</span> By name patterns</h2>
 <section id="names-starting-with-a-string" class="level3"><h3 class="anchored" data-anchor-id="names-starting-with-a-string">Names starting with a string</h3>
 <p>Sometimes we want to select columns based on a pattern of their names. Take the orders data set as an example. Here, all variables that contain information about the shipping address have the prefix <code>shipping</code>. We leverage this with the helper function <code>starts_with()</code>:</p>
 <div class="cell">
@@ -291,8 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="names-ending-with-a-string" class="level3"><h3 class="anchored" data-anchor-id="names-ending-with-a-string">Names ending with a string</h3>
 </section><section id="names-with-a-string-anywhere" class="level3"><h3 class="anchored" data-anchor-id="names-with-a-string-anywhere">Names with a string anywhere</h3>
 </section><section id="using-regular-expressions" class="level3"><h3 class="anchored" data-anchor-id="using-regular-expressions">Using regular expressions</h3>
-</section></section><section id="by-data-type" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="by-data-type">
-<span class="header-section-number">2.4</span> By data type</h2>
+</section></section><section id="by-data-type" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="by-data-type">
+<span class="header-section-number">7.4</span> By data type</h2>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></span>
@@ -418,12 +458,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../../documents/data-transformation/data-transformation-operations.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Operations</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../documents/data-transformation/filter-rows.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Filter rows</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Filter rows</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

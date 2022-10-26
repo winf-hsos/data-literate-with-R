@@ -1,0 +1,46 @@
+---
+title: "From RDS files"
+---
+
+```{r}
+#| echo: false
+#| output: false
+#| warning: false
+library(tidyverse)
+library(here)
+orders <- readRDS(here("data", "orders.rds"))
+```
+
+
+## Load an RDS-file
+
+With the `readRDS()` function, we can load data from R's proprietary data format:
+
+```{r}
+#| eval: false
+orders <- readRDS(file = "data/orders.rds")
+```
+
+If the original data was a tibble, as in this case, the loaded data will be, too:
+
+```{r}
+#| output: true
+orders
+```
+
+
+## Saving data to `.rds` format
+
+We can save any data frame to an `.rds` file using the `saveRDS()` function:
+
+```{r}
+#| eval: false
+saveRDS(orders, file = "data/orders.rds")
+```
+
+
+## Read more
+
+Find more information in the R file format under the following links:
+
+- [Hands-On Programming with R - Appendix D.4 - R Files](https://jjallaire.github.io/hopr/a4-data.html#r-files)

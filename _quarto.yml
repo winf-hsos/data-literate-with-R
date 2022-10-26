@@ -14,6 +14,14 @@ book:
   chapters:
     - index.qmd
     
+    - part: book-parts/data-loading.qmd
+      chapters:
+      - documents/data-loading/load-from-csv.qmd
+      - documents/data-loading/load-from-excel.qmd
+      - documents/data-loading/load-from-rds.qmd
+      - documents/data-loading/load-from-google-spreadsheets.qmd
+      - documents/data-loading/load-from-json.qmd
+    
     - part: book-parts/data-transformation.qmd
       chapters:
       - documents/data-transformation/data-transformation-operations.qmd
@@ -26,6 +34,7 @@ book:
     - part: book-parts/data-visualization.qmd
       chapters:
       - documents/data-visualization/data-visualization-overview.qmd
+      - documents/data-visualization/pleas-for-data-visualization.qmd
       
 format:
   html:

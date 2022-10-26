@@ -1,16 +1,29 @@
 ---
-title: "Load data from CSV files"
+title: "From CSV files"
+editor_options: 
+  chunk_output_type: console
 ---
 ```{r}
 #| echo: false
+#| output: false
+#| warning: false
 library(tidyverse)
 library(here)
+orders <- read_csv(here("data", "orders.csv"))
 ```
 
+Loading data from a CSV file is simple with the `{readr}` package:
 
 ```{r}
-orders <- read_csv(here("data", "orders.csv"))
+#| eval: false
+orders <- read_csv("data/orders.csv")
 
-orders
+#> # A tibble: 2,874 x 68
+#>       order_id name  order~1 app_id created_at          updated_at          test  curre~2 curre~3 curre~4
+#>          <dbl> <chr>   <dbl>  <dbl> <dttm>              <dttm>              <lgl>   <dbl>   <dbl>   <dbl>
+# > 1      1.13e12 B1014    1014 580111 2019-05-24 12:59:16 2019-06-19 13:23:26 FALSE    94.7    94.7       2
+#> 2      1.13e12 B1015    1015 580111 2019-05-24 13:09:08 2019-06-21 14:40:07 FALSE    32.2    32.2       0
+#> 3      1.13e12 B1016    1016 580111 2019-05-24 13:22:41 2019-06-21 12:35:23 FALSE    30.2    30.2       2
+#> ...
 ```
 

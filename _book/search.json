@@ -7,6 +7,62 @@
     "text": "You can download the ZIP-archive with all material here. This archive includes:\n\n\n\nFolder\nContent\n\n\n\n\nbook\nThe compiled book in PDF format\n\n\ndata\nAll data from the chapters\n\n\ndocs\nAll chapters as single PDF files\n\n\nexercises\nAll exercises as PDF files (sometimes with solutions)\n\n\nscripts\nAll code from the chapters as plain R-Scripts (.R)\n\n\nslides\nA collection of slide decks in PDF format"
   },
   {
+    "objectID": "book-parts/data-loading.html",
+    "href": "book-parts/data-loading.html",
+    "title": "Data Loading",
+    "section": "",
+    "text": "This part deals with loading data from various sources."
+  },
+  {
+    "objectID": "documents/data-loading/load-from-csv.html",
+    "href": "documents/data-loading/load-from-csv.html",
+    "title": "\n1  From CSV files\n",
+    "section": "",
+    "text": "Loading data from a CSV file is simple with the readr package:\n\norders <- read_csv(\"data/orders.csv\")\n\n#> # A tibble: 2,874 x 68\n#>       order_id name  order~1 app_id created_at          updated_at          test  curre~2 curre~3 curre~4\n#>          <dbl> <chr>   <dbl>  <dbl> <dttm>              <dttm>              <lgl>   <dbl>   <dbl>   <dbl>\n# > 1      1.13e12 B1014    1014 580111 2019-05-24 12:59:16 2019-06-19 13:23:26 FALSE    94.7    94.7       2\n#> 2      1.13e12 B1015    1015 580111 2019-05-24 13:09:08 2019-06-21 14:40:07 FALSE    32.2    32.2       0\n#> 3      1.13e12 B1016    1016 580111 2019-05-24 13:22:41 2019-06-21 12:35:23 FALSE    30.2    30.2       2\n#> ..."
+  },
+  {
+    "objectID": "documents/data-loading/load-from-excel.html",
+    "href": "documents/data-loading/load-from-excel.html",
+    "title": "2  From Excel files",
+    "section": "",
+    "text": "Coming soon."
+  },
+  {
+    "objectID": "documents/data-loading/load-from-rds.html#load-an-rds-file",
+    "href": "documents/data-loading/load-from-rds.html#load-an-rds-file",
+    "title": "\n3  From RDS files\n",
+    "section": "\n3.1 Load an RDS-file",
+    "text": "3.1 Load an RDS-file\nWith the readRDS() function, we can load data from R’s proprietary data format:\n\norders <- readRDS(file = \"data/orders.rds\")\n\nIf the original data was a tibble, as in this case, the loaded data will be, too:\n\norders\n\n# A tibble: 2,874 x 68\n     order_id name  order~1 app_id created_at          updated_at          test \n        <dbl> <chr>   <dbl>  <dbl> <dttm>              <dttm>              <lgl>\n 1    1.13e12 B1014    1014 580111 2019-05-24 12:59:16 2019-06-19 13:23:26 FALSE\n 2    1.13e12 B1015    1015 580111 2019-05-24 13:09:08 2019-06-21 14:40:07 FALSE\n 3    1.13e12 B1016    1016 580111 2019-05-24 13:22:41 2019-06-21 12:35:23 FALSE\n 4    1.13e12 B1017    1017 580111 2019-05-24 13:27:43 2019-06-21 14:27:18 FALSE\n 5    1.13e12 B1018    1018 580111 2019-05-24 13:36:46 2019-06-21 12:11:57 FALSE\n 6    1.13e12 B1019    1019 580111 2019-05-24 13:44:41 2019-06-21 14:37:21 FALSE\n 7    1.13e12 B1020    1020 580111 2019-05-24 13:49:21 2019-06-21 12:25:16 FALSE\n 8    1.13e12 B1021    1021 580111 2019-05-24 13:59:57 2019-06-21 11:49:47 FALSE\n 9    1.13e12 B1022    1022 580111 2019-05-24 14:43:53 2019-06-19 14:12:38 FALSE\n10    1.13e12 B1023    1023 580111 2019-05-24 14:48:16 2019-06-21 15:54:24 FALSE\n# ... with 2,864 more rows, 61 more variables: current_subtotal_price <dbl>,\n#   current_total_price <dbl>, current_total_discounts <dbl>,\n#   current_total_duties_set <dbl>, total_discounts <dbl>,\n#   total_line_items_price <dbl>, total_outstanding <dbl>, total_price <dbl>,\n#   total_tax <dbl>, total_tip_received <dbl>, taxes_included <lgl>,\n#   discount_codes <chr>, financial_status <chr>, fulfillment_status <chr>,\n#   source_name <chr>, landing_site <chr>, landing_site_ref <chr>, ..."
+  },
+  {
+    "objectID": "documents/data-loading/load-from-rds.html#saving-data-to-.rds-format",
+    "href": "documents/data-loading/load-from-rds.html#saving-data-to-.rds-format",
+    "title": "\n3  From RDS files\n",
+    "section": "\n3.2 Saving data to .rds format",
+    "text": "3.2 Saving data to .rds format\nWe can save any data frame to an .rds file using the saveRDS() function:\n\nsaveRDS(orders, file = \"data/orders.rds\")"
+  },
+  {
+    "objectID": "documents/data-loading/load-from-rds.html#read-more",
+    "href": "documents/data-loading/load-from-rds.html#read-more",
+    "title": "\n3  From RDS files\n",
+    "section": "\n3.3 Read more",
+    "text": "3.3 Read more\nFind more information in the R file format under the following links:\n\nHands-On Programming with R - Appendix D.4 - R Files"
+  },
+  {
+    "objectID": "documents/data-loading/load-from-google-spreadsheets.html",
+    "href": "documents/data-loading/load-from-google-spreadsheets.html",
+    "title": "4  From Google Spreadsheets",
+    "section": "",
+    "text": "Coming soon."
+  },
+  {
+    "objectID": "documents/data-loading/load-from-json.html",
+    "href": "documents/data-loading/load-from-json.html",
+    "title": "5  From JSON files",
+    "section": "",
+    "text": "Coming soon."
+  },
+  {
     "objectID": "book-parts/data-transformation.html",
     "href": "book-parts/data-transformation.html",
     "title": "Data Transformation",
@@ -16,44 +72,44 @@
   {
     "objectID": "documents/data-transformation/data-transformation-operations.html",
     "href": "documents/data-transformation/data-transformation-operations.html",
-    "title": "1  Operations",
+    "title": "6  Operations",
     "section": "",
     "text": "“Data is the new oil. Like oil, data is valuable, but if unrefined, it cannot really be used. It has to be changed into gas, plastic, chemicals, etc. to create a valuable entity that drives profitable activity. So, must data be broken down, analysed for it to have value.”\n\nIf we take this analogy seriously, the data, like oil, needs to be refined to turn it into something of value. Two important tools for refining data into a valuable output are data transformation and data visualization, both of which are the main focus of this book. In this part of the book, we first need to learn how to transform data so that we can apply visualization later on.\nTo learn how to transform data, we need to learn how to to the following operations:\n\nRemove any variables we don’t currently need (or specify those we do need)\nRemove any records we don’t currently need (or specify those we do need)\nAdd new variables that don’t exist yet\nSummarize many records into one or a few numbers\nChange the order of the records\n\nThe goal of the following chapters is to introduce means to perform theses five operations with R."
   },
   {
     "objectID": "documents/data-transformation/select-columns.html",
     "href": "documents/data-transformation/select-columns.html",
-    "title": "\n2  Select columns\n",
+    "title": "\n7  Select columns\n",
     "section": "",
-    "text": "This chapter introduces tools to remove unnecessary columns from the data set. Or, if stated in a positive manner, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the dplyr package."
+    "text": "This chapter introduces tools to remove unnecessary columns from the data set. Or, positively stated, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the dplyr package."
   },
   {
     "objectID": "documents/data-transformation/select-columns.html#the-select-command",
     "href": "documents/data-transformation/select-columns.html#the-select-command",
-    "title": "\n2  Select columns\n",
-    "section": "\n2.1 The select command",
-    "text": "2.1 The select command\nThe function select() is the designated tool to select columns with dplyr. By passing different things to the function, we can efficiently define the set of columns in the resulting data frame."
+    "title": "\n7  Select columns\n",
+    "section": "\n7.1 The select command",
+    "text": "7.1 The select command\nThe function select() is the designated tool to select columns with dplyr. By passing different things to the function, we can efficiently define the set of columns in the resulting data frame."
   },
   {
     "objectID": "documents/data-transformation/select-columns.html#by-column-names",
     "href": "documents/data-transformation/select-columns.html#by-column-names",
-    "title": "\n2  Select columns\n",
-    "section": "\n2.2 By column names",
-    "text": "2.2 By column names\nThe easiest and intuitive way to specify the columns we want is by listing their names. We can pass one or more column names to the select() function. In case of two or more, we use commas to separate the names:\n\n# Just one column name\norders %>% \n  select(order_id)\n\n#> # A tibble: 2,874 x 1\n#>        order_id\n#>           <dbl>\n#> 1 1130007101519\n#> 2 1130014965839\n#> 3 1130026958927\n#> ...\n\n# A list of column names\norders %>% \n  select(order_id, total_price)\n\n#> # A tibble: 2,874 x 2\n#>        order_id total_price\n#>           <dbl>       <dbl>\n#> 1 1130007101519        94.7\n#> 2 1130014965839        32.2\n#> 3 1130026958927        30.2\n#> ...\n\nWhen we only want a few columns, this approach works fine and is usually a good choice. I expect you apply this method in more than 90% of all cases. However, there are cases when you’d wish there was something more flexible. Luckily, there is."
+    "title": "\n7  Select columns\n",
+    "section": "\n7.2 By column names",
+    "text": "7.2 By column names\nThe easiest and intuitive way to specify the columns we want is by listing their names. We can pass one or more column names to the select() function. In case of two or more, we use commas to separate the names:\n\n# Just one column name\norders %>% \n  select(order_id)\n\n#> # A tibble: 2,874 x 1\n#>        order_id\n#>           <dbl>\n#> 1 1130007101519\n#> 2 1130014965839\n#> 3 1130026958927\n#> ...\n\n# A list of column names\norders %>% \n  select(order_id, total_price)\n\n#> # A tibble: 2,874 x 2\n#>        order_id total_price\n#>           <dbl>       <dbl>\n#> 1 1130007101519        94.7\n#> 2 1130014965839        32.2\n#> 3 1130026958927        30.2\n#> ...\n\nWhen we only want a few columns, this approach works fine and is usually a good choice. I expect you apply this method in more than 90% of all cases. However, there are cases when you’d wish there was something more flexible. Luckily, there is."
   },
   {
     "objectID": "documents/data-transformation/select-columns.html#by-name-patterns",
     "href": "documents/data-transformation/select-columns.html#by-name-patterns",
-    "title": "\n2  Select columns\n",
-    "section": "\n2.3 By name patterns",
-    "text": "2.3 By name patterns\nNames starting with a string\nSometimes we want to select columns based on a pattern of their names. Take the orders data set as an example. Here, all variables that contain information about the shipping address have the prefix shipping. We leverage this with the helper function starts_with():\n\norders %>% \n  select(starts_with(\"shipping\")) %>% \n  colnames()\n\n#> [1] \"shipping_address_city\"      \"shipping_address_zip\"       \"shipping_address_country\"  \n#> [4] \"shipping_address_latitude\"  \"shipping_address_longitude\"\n\nNames ending with a string\nNames with a string anywhere\nUsing regular expressions"
+    "title": "\n7  Select columns\n",
+    "section": "\n7.3 By name patterns",
+    "text": "7.3 By name patterns\nNames starting with a string\nSometimes we want to select columns based on a pattern of their names. Take the orders data set as an example. Here, all variables that contain information about the shipping address have the prefix shipping. We leverage this with the helper function starts_with():\n\norders %>% \n  select(starts_with(\"shipping\")) %>% \n  colnames()\n\n#> [1] \"shipping_address_city\"      \"shipping_address_zip\"       \"shipping_address_country\"  \n#> [4] \"shipping_address_latitude\"  \"shipping_address_longitude\"\n\nNames ending with a string\nNames with a string anywhere\nUsing regular expressions"
   },
   {
     "objectID": "documents/data-transformation/select-columns.html#by-data-type",
     "href": "documents/data-transformation/select-columns.html#by-data-type",
-    "title": "\n2  Select columns\n",
-    "section": "\n2.4 By data type",
-    "text": "2.4 By data type\n\norders %>% \n  select(where(is.numeric))\n\norders %>% \n  select(where(is.logical))\n\norders %>% \n  select(where(is.character))\n\norders %>% \n  select(where(is.factor))\n\norders %>% \n  select(where(is.list))\n\n# The package lubridate provides a function to check for date (without time)\norders %>% \n  select(where(lubridate::is.Date))\n\n# Select all date/time columns\norders %>% \n  select(where(lubridate::is.POSIXct))"
+    "title": "\n7  Select columns\n",
+    "section": "\n7.4 By data type",
+    "text": "7.4 By data type\n\norders %>% \n  select(where(is.numeric))\n\norders %>% \n  select(where(is.logical))\n\norders %>% \n  select(where(is.character))\n\norders %>% \n  select(where(is.factor))\n\norders %>% \n  select(where(is.list))\n\n# The package lubridate provides a function to check for date (without time)\norders %>% \n  select(where(lubridate::is.Date))\n\n# Select all date/time columns\norders %>% \n  select(where(lubridate::is.POSIXct))"
   },
   {
     "objectID": "book-parts/data-visualization.html",
@@ -61,5 +117,40 @@
     "title": "Data Visualization",
     "section": "",
     "text": "This part introduces the basic tools for data visualization with R."
+  },
+  {
+    "objectID": "documents/data-visualization/pleas-for-data-visualization.html",
+    "href": "documents/data-visualization/pleas-for-data-visualization.html",
+    "title": "\n13  Pleas for data visualization\n",
+    "section": "",
+    "text": "The R code for the following sections is also available as plain .R scripts. If you downloaded the ZIP-file and you view this as a PDF-document, you find the .R files in the same folder as this document."
+  },
+  {
+    "objectID": "documents/data-visualization/pleas-for-data-visualization.html#numbers-tell-only-a-part-of-the-story",
+    "href": "documents/data-visualization/pleas-for-data-visualization.html#numbers-tell-only-a-part-of-the-story",
+    "title": "\n13  Pleas for data visualization\n",
+    "section": "\n13.2 Numbers tell only a part of the story",
+    "text": "13.2 Numbers tell only a part of the story\nTo illustrate why data visualization is useful, let’s look at two examples. Below we read some data from a CSV-file.\n\nsome_data <- read_csv(\"data/some_data.csv\")\n\n#> # A tibble: 142 x 2\n#>       x     y\n#>   <dbl> <dbl>\n#> 1  55.4  97.2\n#> 2  51.5  96.0\n#> 3  46.2  94.5\n#> ...\n\nAs you can see, the data contains two variables x and y with 142.\nIf we didn’t have visualization as a tool in our data analytics toolkit, we could try to get some insight into the data with descriptive statistics. For example, we could calculate the mean for both variables:\n\nsome_data %>% \n  summarise(across(everything(), mean, .names = \"{.col}_mean\"))\n\n# A tibble: 1 x 2\n  x_mean y_mean\n   <dbl>  <dbl>\n1   54.3   47.8\n\n\nSimilarly, we could calculate a measure of spread, such as the standard deviation:\n\nsome_data %>% \n  summarise(across(everything(), sd, .names = \"{.col}_sd\"))\n\n# A tibble: 1 x 2\n   x_sd  y_sd\n  <dbl> <dbl>\n1  16.8  26.9\n\n\nOr other measures:\n\nsome_data %>% \n  summarise(\n    across(everything(),\n           list(mean = mean, sd = sd, median = median), \n           .names = \"{.col}_{.fn}\"\n           )\n    )\n\n# A tibble: 1 x 6\n  x_mean  x_sd x_median y_mean  y_sd y_median\n   <dbl> <dbl>    <dbl>  <dbl> <dbl>    <dbl>\n1   54.3  16.8     53.3   47.8  26.9     46.0\n\n\nWe could also calculate Pearson’s correlation coefficient:\n\ntibble(\n  pearson = cor(some_data$x, some_data$y)\n  )\n\n# A tibble: 1 x 1\n  pearson\n    <dbl>\n1 -0.0645\n\n\nFrom the rather small value, we could hypothesize that the variables are unrelated. But are they?"
+  },
+  {
+    "objectID": "documents/data-visualization/pleas-for-data-visualization.html#visualization-can-reveal-hidden-patterns",
+    "href": "documents/data-visualization/pleas-for-data-visualization.html#visualization-can-reveal-hidden-patterns",
+    "title": "\n13  Pleas for data visualization\n",
+    "section": "\n13.3 Visualization can reveal hidden patterns",
+    "text": "13.3 Visualization can reveal hidden patterns\nLet’s add visualization to our toolkit and find out:\n\nsome_data %>% \n  ggplot() + \n  aes(x, y) + \n  geom_point()\n\n\n\n\nThe data certainly does not look unrelated to me. Of course, this an exaggerated example, but it makes the point: Only when we visualize data can we identify patterns that would otherwise stay hidden in the numbers. No statistical method could have told us there is dinosaur in the data. Well, actually it is called a datasaurus, and there is even a whole R-package with the name datasauRus dedicated to it. This packages contains the same data set, but adds more that share the same statistical measures. We could not distinguish between the data by just looking at measures such as mean, standard deviation or correlation coefficient. We would have to visualize the data:\n\n#install.packages(\"datasauRus\")\nlibrary(datasauRus)\n\ndatasaurus_dozen %>% \n  group_by(dataset) %>% \n  summarize(\n    mean_x    = mean(x),\n    mean_y    = mean(y),\n    std_dev_x = sd(x),\n    std_dev_y = sd(y),\n    corr_x_y  = cor(x, y)\n    )\n\n# A tibble: 13 x 6\n   dataset    mean_x mean_y std_dev_x std_dev_y corr_x_y\n   <chr>       <dbl>  <dbl>     <dbl>     <dbl>    <dbl>\n 1 away         54.3   47.8      16.8      26.9  -0.0641\n 2 bullseye     54.3   47.8      16.8      26.9  -0.0686\n 3 circle       54.3   47.8      16.8      26.9  -0.0683\n 4 dino         54.3   47.8      16.8      26.9  -0.0645\n 5 dots         54.3   47.8      16.8      26.9  -0.0603\n 6 h_lines      54.3   47.8      16.8      26.9  -0.0617\n 7 high_lines   54.3   47.8      16.8      26.9  -0.0685\n 8 slant_down   54.3   47.8      16.8      26.9  -0.0690\n 9 slant_up     54.3   47.8      16.8      26.9  -0.0686\n10 star         54.3   47.8      16.8      26.9  -0.0630\n11 v_lines      54.3   47.8      16.8      26.9  -0.0694\n12 wide_lines   54.3   47.8      16.8      26.9  -0.0666\n13 x_shape      54.3   47.8      16.8      26.9  -0.0656\n\n\nThe table shows the mean, standard deviation and correlation coefficient for all 13 data sets included in the datasauRus package. As you can see, the values are the same across all data sets. Only when we visualize do we see the different patterns in the data:\n\ndatasaurus_dozen %>% \n  ggplot() + \n  aes(x = x, y = y, colour = dataset) +\n  geom_point() +\n  theme_void() +\n  theme(legend.position = \"none\") +\n  facet_wrap(~dataset, ncol = 4)"
+  },
+  {
+    "objectID": "documents/data-visualization/pleas-for-data-visualization.html#anscombes-quartet",
+    "href": "documents/data-visualization/pleas-for-data-visualization.html#anscombes-quartet",
+    "title": "\n13  Pleas for data visualization\n",
+    "section": "\n13.4 Anscombe’s Quartet",
+    "text": "13.4 Anscombe’s Quartet\nAnother and even older plea for the visualization of data can be found in Francis Anscombe’s publication Graphs in Statistical Analysis from the year 1973. In this paper, Anscombe presented four data sets that looked very much the same when viewing the common descriptive statistical measures. Again, only by visualizing the data can we see the real patterns.\nLet’s load the data and see for ourselves:\n\nanscombe1 <- read_csv(\"data/anscombe1.csv\") %>% \n  mutate(dataset = \"1\")\n\nanscombe2 <- read_csv(\"data/anscombe2.csv\") %>% \n  mutate(dataset = \"2\")\n\nanscombe3 <- read_csv(\"data/anscombe3.csv\") %>% \n  mutate(dataset = \"3\")\n\nanscombe4 <- read_csv(\"data/anscombe4.csv\") %>%  \n  mutate(dataset = \"4\")\n\nWe now want all four in one data frame. We can achieve this with the union_all() function:\n\nanscombe <- \n  anscombe1 %>% \n  union_all(anscombe2) %>% \n  union_all(anscombe3) %>% \n  union_all(anscombe4)\n\n#> # A tibble: 44 x 3\n#>       x     y dataset\n#>   <dbl> <dbl> <chr>  \n#> 1    10  8.04 1      \n#> 2     8  6.95 1      \n#> 3    13  7.58 1  \n#> ...\n\nWe now have all four of Anscombe’s Quartet in one data frame and we can distinguish the original data set by the column dataset. First, let’s look at the descriptive statistics:\n\nanscombe %>% \n  group_by(dataset) %>% \n  summarize(\n    mean_x    = mean(x),\n    mean_y    = mean(y),\n    std_dev_x = sd(x),\n    std_dev_y = sd(y),\n    corr_x_y  = cor(x, y)\n    )\n\n# A tibble: 4 x 6\n  dataset mean_x mean_y std_dev_x std_dev_y corr_x_y\n  <chr>    <dbl>  <dbl>     <dbl>     <dbl>    <dbl>\n1 1            9   7.50      3.32      2.03    0.816\n2 2            9   7.50      3.32      2.03    0.816\n3 3            9   7.5       3.32      2.03    0.816\n4 4            9   7.50      3.32      2.03    0.817\n\n\nAs expected, all measures look the same for all 4 data sets. But again, a plot reveals the truth:\n\nanscombe %>% \n  ggplot() + \n  aes(x, y) +\n  geom_point() +\n  theme_bw() +\n  theme(legend.position = \"none\") +\n  facet_wrap(~dataset, ncol = 2)\n\n\n\n\nThe first plot shows a linear trend with some noise, as we might already have suspected from a correlation coefficient of roughly 0.81. The second plot, although having the same correlation coefficient, displays a obviously non-linear trajectory. The third plot would have had a perfect correlation if it wasn’t for the single outlier. In contrast, the last plot would have had no correlation between x and y if the point on the very top-right didn’t exist. Again, we could not have gotten this insight from any statistical measure we can calculate.\nI hope the examples convinced you of the importance of data visualization in data analytics. There are even more good reasons why we should visualize data, besides the fact that otherwise couldn’t reveal hidden patterns. We know from psychological research about the way humans process information that the visualizations are a much faster way into our brains. We can not only grasp what we see in a good data visualization faster, but also comprehend it better and create a better memory of it. If that doesn’t convince you, nothing will."
+  },
+  {
+    "objectID": "documents/data-visualization/pleas-for-data-visualization.html#references",
+    "href": "documents/data-visualization/pleas-for-data-visualization.html#references",
+    "title": "\n13  Pleas for data visualization\n",
+    "section": "\n13.5 References",
+    "text": "13.5 References\n\nThe official website of the {datasauRus} package\nYouTube video on Anscombe’s Quartet\nOriginal Paper Graphs in Statistical Analysis by Francis Anscombe"
   }
 ]
