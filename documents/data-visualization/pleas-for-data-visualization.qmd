@@ -1,5 +1,5 @@
 ---
-title: "Pleas for data visualization"
+title: "Pleas for visualization"
 editor_options: 
   chunk_output_type: console
 ---

@@ -51,7 +51,7 @@
   {
     "objectID": "documents/data-loading/load-from-google-spreadsheets.html",
     "href": "documents/data-loading/load-from-google-spreadsheets.html",
-    "title": "4  From Google Spreadsheets",
+    "title": "4  From Google Sheets",
     "section": "",
     "text": "Coming soon."
   },
@@ -142,36 +142,50 @@
   {
     "objectID": "documents/data-visualization/pleas-for-data-visualization.html",
     "href": "documents/data-visualization/pleas-for-data-visualization.html",
-    "title": "\n13  Pleas for data visualization\n",
+    "title": "\n13  Pleas for visualization\n",
     "section": "",
     "text": "The R code for the following sections is also available as plain .R scripts. If you downloaded the ZIP-file and you view this as a PDF-document, you find the .R files in the same folder as this document."
   },
   {
     "objectID": "documents/data-visualization/pleas-for-data-visualization.html#numbers-tell-only-a-part-of-the-story",
     "href": "documents/data-visualization/pleas-for-data-visualization.html#numbers-tell-only-a-part-of-the-story",
-    "title": "\n13  Pleas for data visualization\n",
+    "title": "\n13  Pleas for visualization\n",
     "section": "\n13.2 Numbers tell only a part of the story",
     "text": "13.2 Numbers tell only a part of the story\nTo illustrate why data visualization is useful, let’s look at two examples. Below we read some data from a CSV-file.\n\nsome_data <- read_csv(\"data/some_data.csv\")\n\n#> # A tibble: 142 x 2\n#>       x     y\n#>   <dbl> <dbl>\n#> 1  55.4  97.2\n#> 2  51.5  96.0\n#> 3  46.2  94.5\n#> ...\n\nAs you can see, the data contains two variables x and y with 142.\nIf we didn’t have visualization as a tool in our data analytics toolkit, we could try to get some insight into the data with descriptive statistics. For example, we could calculate the mean for both variables:\n\nsome_data %>% \n  summarise(across(everything(), mean, .names = \"{.col}_mean\"))\n\n# A tibble: 1 x 2\n  x_mean y_mean\n   <dbl>  <dbl>\n1   54.3   47.8\n\n\nSimilarly, we could calculate a measure of spread, such as the standard deviation:\n\nsome_data %>% \n  summarise(across(everything(), sd, .names = \"{.col}_sd\"))\n\n# A tibble: 1 x 2\n   x_sd  y_sd\n  <dbl> <dbl>\n1  16.8  26.9\n\n\nOr other measures:\n\nsome_data %>% \n  summarise(\n    across(everything(),\n           list(mean = mean, sd = sd, median = median), \n           .names = \"{.col}_{.fn}\"\n           )\n    )\n\n# A tibble: 1 x 6\n  x_mean  x_sd x_median y_mean  y_sd y_median\n   <dbl> <dbl>    <dbl>  <dbl> <dbl>    <dbl>\n1   54.3  16.8     53.3   47.8  26.9     46.0\n\n\nWe could also calculate Pearson’s correlation coefficient:\n\ntibble(\n  pearson = cor(some_data$x, some_data$y)\n  )\n\n# A tibble: 1 x 1\n  pearson\n    <dbl>\n1 -0.0645\n\n\nFrom the rather small value, we could hypothesize that the variables are unrelated. But are they?"
   },
   {
     "objectID": "documents/data-visualization/pleas-for-data-visualization.html#visualization-can-reveal-hidden-patterns",
     "href": "documents/data-visualization/pleas-for-data-visualization.html#visualization-can-reveal-hidden-patterns",
-    "title": "\n13  Pleas for data visualization\n",
+    "title": "\n13  Pleas for visualization\n",
     "section": "\n13.3 Visualization can reveal hidden patterns",
     "text": "13.3 Visualization can reveal hidden patterns\nLet’s add visualization to our toolkit and find out:\n\nsome_data %>% \n  ggplot() + \n  aes(x, y) + \n  geom_point()\n\n\n\n\nThe data certainly does not look unrelated to me. Of course, this an exaggerated example, but it makes the point: Only when we visualize data can we identify patterns that would otherwise stay hidden in the numbers. No statistical method could have told us there is a dinosaur hidden in the data. Well, actually it is called a datasaurus, and there is a whole R-package with the name datasauRus dedicated to it. This packages contains the same data set, but adds more that share the same statistical measures. We could not distinguish between the data by just looking at measures such as mean, standard deviation or correlation coefficient. We would have to visualize the data:\n\n#install.packages(\"datasauRus\")\nlibrary(datasauRus)\n\ndatasaurus_dozen %>% \n  group_by(dataset) %>% \n  summarize(\n    mean_x    = mean(x),\n    mean_y    = mean(y),\n    std_dev_x = sd(x),\n    std_dev_y = sd(y),\n    corr_x_y  = cor(x, y)\n    )\n\n# A tibble: 13 x 6\n   dataset    mean_x mean_y std_dev_x std_dev_y corr_x_y\n   <chr>       <dbl>  <dbl>     <dbl>     <dbl>    <dbl>\n 1 away         54.3   47.8      16.8      26.9  -0.0641\n 2 bullseye     54.3   47.8      16.8      26.9  -0.0686\n 3 circle       54.3   47.8      16.8      26.9  -0.0683\n 4 dino         54.3   47.8      16.8      26.9  -0.0645\n 5 dots         54.3   47.8      16.8      26.9  -0.0603\n 6 h_lines      54.3   47.8      16.8      26.9  -0.0617\n 7 high_lines   54.3   47.8      16.8      26.9  -0.0685\n 8 slant_down   54.3   47.8      16.8      26.9  -0.0690\n 9 slant_up     54.3   47.8      16.8      26.9  -0.0686\n10 star         54.3   47.8      16.8      26.9  -0.0630\n11 v_lines      54.3   47.8      16.8      26.9  -0.0694\n12 wide_lines   54.3   47.8      16.8      26.9  -0.0666\n13 x_shape      54.3   47.8      16.8      26.9  -0.0656\n\n\nThe table shows the mean, standard deviation and correlation coefficient for all 13 data sets included in the datasauRus package. As you can see, the values are nearly the same across all data sets. Only when we visualize do we see the different patterns in the data:\n\ndatasaurus_dozen %>% \n  ggplot() + \n  aes(x = x, y = y, colour = dataset) +\n  geom_point() +\n  theme_void() +\n  theme(legend.position = \"none\") +\n  facet_wrap(~dataset, ncol = 4)"
   },
   {
     "objectID": "documents/data-visualization/pleas-for-data-visualization.html#anscombes-quartet",
     "href": "documents/data-visualization/pleas-for-data-visualization.html#anscombes-quartet",
-    "title": "\n13  Pleas for data visualization\n",
+    "title": "\n13  Pleas for visualization\n",
     "section": "\n13.4 Anscombe’s Quartet",
     "text": "13.4 Anscombe’s Quartet\nAnother and even older plea for the visualization of data can be found in Francis Anscombe’s publication Graphs in Statistical Analysis from the year 1973. In his paper, Anscombe presents four data sets that look very much the same when viewing the common descriptive statistical measures. Again, only by visualizing the data can we see the otherwise hidden patterns.\nLet’s load the data and see for ourselves:\n\nanscombe1 <- read_csv(\"data/anscombe1.csv\") %>% \n  mutate(dataset = \"1\")\n\nanscombe2 <- read_csv(\"data/anscombe2.csv\") %>% \n  mutate(dataset = \"2\")\n\nanscombe3 <- read_csv(\"data/anscombe3.csv\") %>% \n  mutate(dataset = \"3\")\n\nanscombe4 <- read_csv(\"data/anscombe4.csv\") %>%  \n  mutate(dataset = \"4\")\n\nFor convenience, we want all four of Anscombe’s data sets in one data frame. We can achieve this with the union_all() function:\n\nanscombe <- \n  anscombe1 %>% \n  union_all(anscombe2) %>% \n  union_all(anscombe3) %>% \n  union_all(anscombe4)\n\n#> # A tibble: 44 x 3\n#>       x     y dataset\n#>   <dbl> <dbl> <chr>  \n#> 1    10  8.04 1      \n#> 2     8  6.95 1      \n#> 3    13  7.58 1  \n#> ...\n\nWe now have all four of Anscombe’s Quartet in one data frame and we can distinguish the original data set by the column dataset. First, let’s look at the descriptive statistics:\n\nanscombe %>% \n  group_by(dataset) %>% \n  summarize(\n    mean_x    = mean(x),\n    mean_y    = mean(y),\n    std_dev_x = sd(x),\n    std_dev_y = sd(y),\n    corr_x_y  = cor(x, y)\n    )\n\n# A tibble: 4 x 6\n  dataset mean_x mean_y std_dev_x std_dev_y corr_x_y\n  <chr>    <dbl>  <dbl>     <dbl>     <dbl>    <dbl>\n1 1            9   7.50      3.32      2.03    0.816\n2 2            9   7.50      3.32      2.03    0.816\n3 3            9   7.5       3.32      2.03    0.816\n4 4            9   7.50      3.32      2.03    0.817\n\n\nAs expected, all measures look the same for all 4 data sets. But again, a plot reveals the truth:\n\nanscombe %>% \n  ggplot() + \n  aes(x, y) +\n  geom_point() +\n  theme_bw() +\n  theme(legend.position = \"none\") +\n  facet_wrap(~dataset, ncol = 2)\n\n\n\n\nThe first plot shows a linear trend with some noise, as we might already have suspected from a correlation coefficient of roughly 0.81. The second plot, although having the same correlation coefficient, displays a non-linear trajectory. The third plot would have had a perfect correlation if it wasn’t for the single outlier. In contrast, the last plot would have had no correlation between x and y, if the point on the very top-right didn’t exist. Again, we could not have gotten this insight from any statistical measure we can calculate.\nI hope the examples convinced you of the importance of data visualization. There are even more good reasons why we should visualize data, besides revealing hidden patterns. We know from psychological research about the way humans process information that visualizations are a much faster way into our brains. We can not only grasp what we see in a good data visualization faster, but also comprehend it better and create a better memory of it. If that doesn’t convince you, nothing will."
   },
   {
     "objectID": "documents/data-visualization/pleas-for-data-visualization.html#references",
     "href": "documents/data-visualization/pleas-for-data-visualization.html#references",
-    "title": "\n13  Pleas for data visualization\n",
+    "title": "\n13  Pleas for visualization\n",
     "section": "\n13.5 References",
     "text": "13.5 References\n\nThe official website of the {datasauRus} package\nYouTube video on Anscombe’s Quartet\nOriginal Paper Graphs in Statistical Analysis by Francis Anscombe\nSlide Deck: Visualizations - What works with humans?"
+  },
+  {
+    "objectID": "book-parts/appendix.html",
+    "href": "book-parts/appendix.html",
+    "title": "Appendix",
+    "section": "",
+    "text": "The appendix contains useful resources."
+  },
+  {
+    "objectID": "book-parts/appendix_slide_listing.html",
+    "href": "book-parts/appendix_slide_listing.html",
+    "title": "14  Slides",
+    "section": "",
+    "text": "File Name\n\n\n\n\n\n\nDatentransformation mit R und dplyr.pdf\n\n\n\n\nExploratory Data Analysis (EDA).pdf\n\n\n\n\nVisualizations - What works with Humans.pdf\n\n\n\n\n\n\nNo matching items"
   }
 ]

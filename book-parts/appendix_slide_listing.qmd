@@ -1,0 +1,9 @@
+---
+title: "Slides"
+listing:
+  sort-ui: false
+  contents:
+    - "../slides/*.pdf"
+  type: table
+  fields: [filename]
+---

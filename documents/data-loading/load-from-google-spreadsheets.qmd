@@ -1,7 +1,5 @@
 ---
-title: "From Google Spreadsheets"
+title: "From Google Sheets"
 ---
-
-## Loading data from Google Spreadsheets
 
 Coming soon.

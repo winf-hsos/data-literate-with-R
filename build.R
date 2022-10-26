@@ -98,14 +98,6 @@ writeLines(lines, r_proj_file)
 
 print("Created R-project file...")
 
-# Render and copy the book ####
-quarto_render("index.qmd", quiet = quiet)
-
-# Copy the book as PDF
-file.copy("_book/Data-Literate-with-R.pdf", "output/book")
-
-print("Rendered and copied book as PDF...")
-
 # Download and save Google Slides ####
 library(httr)
 
@@ -145,6 +137,14 @@ slides_list <- list.files("slides", ".pdf", full.names = TRUE, recursive = TRUE)
 file.copy(slides_list, "output/slides", overwrite = TRUE)
 
 print("Downloaded and copied Google Slides as PDF...")
+
+# Render and copy the book ####
+quarto_render("index.qmd", quiet = quiet)
+
+# Copy the book as PDF
+file.copy("_book/Data-Literate-with-R.pdf", "output/book")
+
+print("Rendered and copied book as PDF...")
 
 # Create ZIP file ####
 setwd(here("output"))

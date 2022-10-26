@@ -36,6 +36,10 @@ book:
       - documents/data-visualization/data-visualization-overview.qmd
       - documents/data-visualization/pleas-for-data-visualization.qmd
       
+    - part: book-parts/appendix.qmd
+      chapters: 
+      - book-parts/appendix_slide_listing.qmd
+      
 format:
   html:
     theme: cosmo
