@@ -102,7 +102,7 @@ some_data %>%
   geom_point()
 ```
 
-The data certainly does not look unrelated to me. Of course, this an exaggerated example, but it makes the point: Only when we visualize data can we identify patterns that would otherwise stay hidden in the numbers. No statistical method could have told us there is dinosaur in the data. Well, actually it is called a datasaurus, and there is even a whole R-package with the name `{datasauRus}` dedicated to it. This packages contains the same data set, but adds more that share the same statistical measures. We could not distinguish between the data by just looking at measures such as mean, standard deviation or correlation coefficient. We would have to visualize the data:
+The data certainly does not look unrelated to me. Of course, this an exaggerated example, but it makes the point: Only when we visualize data can we identify patterns that would otherwise stay hidden in the numbers. No statistical method could have told us there is a dinosaur hidden in the data. Well, actually it is called a *datasaurus*, and there is a whole R-package with the name `{datasauRus}` dedicated to it. This packages contains the same data set, but adds more that share the same statistical measures. We could not distinguish between the data by just looking at measures such as mean, standard deviation or correlation coefficient. We would have to visualize the data:
 
 ```{r}
 #install.packages("datasauRus")
@@ -120,7 +120,7 @@ datasaurus_dozen %>%
 
 ```
 
-The table shows the mean, standard deviation and correlation coefficient for all 13 data sets included in the `{datasauRus}` package. As you can see, the values are the same across all data sets. Only when we visualize do we see the different patterns in the data:
+The table shows the mean, standard deviation and correlation coefficient for all 13 data sets included in the `{datasauRus}` package. As you can see, the values are nearly the same across all data sets. Only when we visualize do we see the different patterns in the data:
 
 ```{r}
 datasaurus_dozen %>% 
@@ -134,7 +134,7 @@ datasaurus_dozen %>%
 
 ## Anscombe's Quartet
 
-Another and even older plea for the visualization of data can be found in Francis Anscombe's publication *Graphs in Statistical Analysis* from the year 1973. In this paper, Anscombe presented four data sets that looked very much the same when viewing the common descriptive statistical measures. Again, only by visualizing the data can we see the real patterns.
+Another and even older plea for the visualization of data can be found in Francis Anscombe's publication *Graphs in Statistical Analysis* from the year 1973. In his paper, Anscombe presents four data sets that look very much the same when viewing the common descriptive statistical measures. Again, only by visualizing the data can we see the otherwise hidden patterns.
 
 Let's load the data and see for ourselves:
 
@@ -153,7 +153,7 @@ anscombe4 <- read_csv("data/anscombe4.csv") %>%
   mutate(dataset = "4")
 ```
 
-We now want all four in one data frame. We can achieve this with the `union_all()` function:
+For convenience, we want all four of Anscombe's data sets in one data frame. We can achieve this with the `union_all()` function:
 
 ```{r}
 anscombe <- 
@@ -197,9 +197,9 @@ anscombe %>%
   facet_wrap(~dataset, ncol = 2)
 ```
 
-The first plot shows a linear trend with some noise, as we might already have suspected from a correlation coefficient of roughly 0.81. The second plot, although having the same correlation coefficient, displays a obviously non-linear trajectory. The third plot would have had a perfect correlation if it wasn't for the single outlier. In contrast, the last plot would have had no correlation between `x` and `y` if the point on the very top-right didn't exist. Again, we could not have gotten this insight from any statistical measure we can calculate.
+The first plot shows a linear trend with some noise, as we might already have suspected from a correlation coefficient of roughly 0.81. The second plot, although having the same correlation coefficient, displays a non-linear trajectory. The third plot would have had a perfect correlation if it wasn't for the single outlier. In contrast, the last plot would have had no correlation between `x` and `y`, if the point on the very top-right didn't exist. Again, we could not have gotten this insight from any statistical measure we can calculate.
 
-I hope the examples convinced you of the importance of data visualization in data analytics. There are even more good reasons why we should visualize data, besides the fact that otherwise couldn't reveal hidden patterns. We know from psychological research about the way humans process information that the visualizations are a much faster way into our brains. We can not only grasp what we see in a good data visualization faster, but also comprehend it better and create a better memory of it. If that doesn't convince you, nothing will.
+I hope the examples convinced you of the importance of data visualization. There are even more good reasons why we should visualize data, besides revealing hidden patterns. We know from psychological research about the way humans process information that visualizations are a much faster way into our brains. We can not only grasp what we see in a good data visualization faster, but also comprehend it better and create a better memory of it. If that doesn't convince you, nothing will.
 
 ## References
 
@@ -208,3 +208,5 @@ I hope the examples convinced you of the importance of data visualization in dat
 -   [YouTube video on Anscombe's Quartet](https://www.youtube.com/watch?v=Kd--Q-aTwpM)
 
 -   [Original Paper *Graphs in Statistical Analysis* by Francis Anscombe](https://www.sjsu.edu/faculty/gerstman/StatPrimer/anscombe1973.pdf)
+
+-   [Slide Deck: Visualizations - What works with humans?](https://docs.google.com/presentation/d/1_88evfU3IL2LWkaEa01ae4fL9xyDSfsYm_y-uiKnxHs/view)

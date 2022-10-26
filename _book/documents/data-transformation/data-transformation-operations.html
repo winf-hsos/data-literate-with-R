@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Literate with R - 6&nbsp; Operations</title>
+<title>Data Literate with R - 6&nbsp; Five operations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Five operations</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -143,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></a>
+  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Five operations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -205,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Five operations</span></h1>
 </div>
 
 
@@ -219,19 +219,19 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Data is the new oil, according to the mathematician <a href="https://en.wikipedia.org/wiki/Clive_Humby">Clive Humby</a>:</p>
+<p>Data is the new oil, at least according to the mathematician <a href="https://en.wikipedia.org/wiki/Clive_Humby">Clive Humby</a>:</p>
 <blockquote class="blockquote">
 <p>“Data is the new oil. Like oil, data is valuable, but if unrefined, it cannot really be used. It has to be changed into gas, plastic, chemicals, etc. to create a valuable entity that drives profitable activity. So, must data be broken down, analysed for it to have value.”</p>
 </blockquote>
-<p>If we take this analogy seriously, the data, like oil, needs to be refined to turn it into something of value. Two important tools for refining data into a valuable output are <em>data transformation</em> and <em>data visualization</em>, both of which are the main focus of this book. In this part of the book, we first need to learn how to transform data so that we can apply visualization later on.</p>
-<p>To learn how to transform data, we need to learn how to to the following operations:</p>
-<ul>
-<li>Remove any variables we don’t currently need (or specify those we <strong>do</strong> need)</li>
-<li>Remove any records we don’t currently need (or specify those we <strong>do</strong> need)</li>
-<li>Add new variables that don’t exist yet</li>
-<li>Summarize many records into one or a few numbers</li>
-<li>Change the order of the records</li>
-</ul>
+<p>If we take this analogy seriously, the data, like oil, needs to be refined to turn it into something of value. Two important tools for refining data into a valuable output are <em>data transformation</em> and <em>data visualization</em>, both of which are the main focus of this book. In this part of the book, we first need to learn how to transform data from one form into another, so that we can apply visualization later on.</p>
+<p>To master data transformation, we need to learn how to perform the following operations. We always start with a given data frame that we want to change into something else. In doing that, we typically want to …</p>
+<ol type="1">
+<li>… remove variables we don’t currently need (or specify those we <strong>do</strong> need)</li>
+<li>… remove any records we don’t currently need (or specify those we <strong>do</strong> need)</li>
+<li>… add new variables we need, but that don’t exist yet</li>
+<li>… summarize many records into one or a few numbers</li>
+<li>… change the order of the records</li>
+</ol>
 <p>The goal of the following chapters is to introduce means to perform theses five operations with R.</p>
 
 

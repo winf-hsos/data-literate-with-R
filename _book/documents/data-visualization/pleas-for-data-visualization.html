@@ -193,7 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></a>
+  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Five operations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -359,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="pleas-for-data-visualization_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The data certainly does not look unrelated to me. Of course, this an exaggerated example, but it makes the point: Only when we visualize data can we identify patterns that would otherwise stay hidden in the numbers. No statistical method could have told us there is dinosaur in the data. Well, actually it is called a datasaurus, and there is even a whole R-package with the name <a href="https://github.com/jumpingrivers/datasauRus">datasauRus</a> dedicated to it. This packages contains the same data set, but adds more that share the same statistical measures. We could not distinguish between the data by just looking at measures such as mean, standard deviation or correlation coefficient. We would have to visualize the data:</p>
+<p>The data certainly does not look unrelated to me. Of course, this an exaggerated example, but it makes the point: Only when we visualize data can we identify patterns that would otherwise stay hidden in the numbers. No statistical method could have told us there is a dinosaur hidden in the data. Well, actually it is called a <em>datasaurus</em>, and there is a whole R-package with the name <a href="https://github.com/jumpingrivers/datasauRus">datasauRus</a> dedicated to it. This packages contains the same data set, but adds more that share the same statistical measures. We could not distinguish between the data by just looking at measures such as mean, standard deviation or correlation coefficient. We would have to visualize the data:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#install.packages("datasauRus")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jumpingrivers/datasauRus">datasauRus</a></span><span class="op">)</span></span>
@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 13 x_shape      54.3   47.8      16.8      26.9  -0.0656</code></pre>
 </div>
 </div>
-<p>The table shows the mean, standard deviation and correlation coefficient for all 13 data sets included in the <a href="https://github.com/jumpingrivers/datasauRus">datasauRus</a> package. As you can see, the values are the same across all data sets. Only when we visualize do we see the different patterns in the data:</p>
+<p>The table shows the mean, standard deviation and correlation coefficient for all 13 data sets included in the <a href="https://github.com/jumpingrivers/datasauRus">datasauRus</a> package. As you can see, the values are nearly the same across all data sets. Only when we visualize do we see the different patterns in the data:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">datasaurus_dozen</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -407,7 +407,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="anscombes-quartet" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="anscombes-quartet">
 <span class="header-section-number">13.4</span> Anscombe’s Quartet</h2>
-<p>Another and even older plea for the visualization of data can be found in Francis Anscombe’s publication <em>Graphs in Statistical Analysis</em> from the year 1973. In this paper, Anscombe presented four data sets that looked very much the same when viewing the common descriptive statistical measures. Again, only by visualizing the data can we see the real patterns.</p>
+<p>Another and even older plea for the visualization of data can be found in Francis Anscombe’s publication <em>Graphs in Statistical Analysis</em> from the year 1973. In his paper, Anscombe presents four data sets that look very much the same when viewing the common descriptive statistical measures. Again, only by visualizing the data can we see the otherwise hidden patterns.</p>
 <p>Let’s load the data and see for ourselves:</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anscombe1</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/anscombe1.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
@@ -422,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">anscombe4</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/anscombe4.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span>  </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"4"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We now want all four in one data frame. We can achieve this with the <code>union_all()</code> function:</p>
+<p>For convenience, we want all four of Anscombe’s data sets in one data frame. We can achieve this with the <code>union_all()</code> function:</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anscombe</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">anscombe1</span> <span class="op">%&gt;%</span> </span>
@@ -472,14 +472,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="pleas-for-data-visualization_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The first plot shows a linear trend with some noise, as we might already have suspected from a correlation coefficient of roughly 0.81. The second plot, although having the same correlation coefficient, displays a obviously non-linear trajectory. The third plot would have had a perfect correlation if it wasn’t for the single outlier. In contrast, the last plot would have had no correlation between <code>x</code> and <code>y</code> if the point on the very top-right didn’t exist. Again, we could not have gotten this insight from any statistical measure we can calculate.</p>
-<p>I hope the examples convinced you of the importance of data visualization in data analytics. There are even more good reasons why we should visualize data, besides the fact that otherwise couldn’t reveal hidden patterns. We know from psychological research about the way humans process information that the visualizations are a much faster way into our brains. We can not only grasp what we see in a good data visualization faster, but also comprehend it better and create a better memory of it. If that doesn’t convince you, nothing will.</p>
+<p>The first plot shows a linear trend with some noise, as we might already have suspected from a correlation coefficient of roughly 0.81. The second plot, although having the same correlation coefficient, displays a non-linear trajectory. The third plot would have had a perfect correlation if it wasn’t for the single outlier. In contrast, the last plot would have had no correlation between <code>x</code> and <code>y</code>, if the point on the very top-right didn’t exist. Again, we could not have gotten this insight from any statistical measure we can calculate.</p>
+<p>I hope the examples convinced you of the importance of data visualization. There are even more good reasons why we should visualize data, besides revealing hidden patterns. We know from psychological research about the way humans process information that visualizations are a much faster way into our brains. We can not only grasp what we see in a good data visualization faster, but also comprehend it better and create a better memory of it. If that doesn’t convince you, nothing will.</p>
 </section><section id="references" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="references">
 <span class="header-section-number">13.5</span> References</h2>
 <ul>
 <li><p><a href="https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html">The official website of the <code>{datasauRus}</code> package</a></p></li>
 <li><p><a href="https://www.youtube.com/watch?v=Kd--Q-aTwpM">YouTube video on Anscombe’s Quartet</a></p></li>
 <li><p><a href="https://www.sjsu.edu/faculty/gerstman/StatPrimer/anscombe1973.pdf">Original Paper <em>Graphs in Statistical Analysis</em> by Francis Anscombe</a></p></li>
+<li><p><a href="https://docs.google.com/presentation/d/1_88evfU3IL2LWkaEa01ae4fL9xyDSfsYm_y-uiKnxHs/view">Slide Deck: Visualizations - What works with humans?</a></p></li>
 </ul>
 
 

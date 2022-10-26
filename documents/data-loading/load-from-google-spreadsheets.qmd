@@ -1,17 +1,7 @@
 ---
 title: "From Google Spreadsheets"
-lang: de
-format:
-  pdf:
-    toc: false
-    number-sections: false
-    colorlinks: true
-  html:
-    toc: false
-    html-math-method: katex
-    code-link: true
 ---
 
-# Loading data from Google Spreadsheets
+## Loading data from Google Spreadsheets
 
 Coming soon.

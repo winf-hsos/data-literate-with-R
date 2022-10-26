@@ -8,7 +8,11 @@ orders <- read_csv("data/orders.csv")
 
 # 1. Select columns by name ####
 
-# By listing the column names
+# Single columns
+orders %>% 
+  select(order_id)
+
+# Listing the column names comma separated
 orders %>% 
   select(order_id, total_price)
 
@@ -44,24 +48,16 @@ orders %>%
 orders %>% 
   select(where(is.list))
 
-# The package lubridate provides a function to check for date (without time)
+# The package lubridate provides a function to check for date (without time) ...
 library(lubridate)
 orders %>% 
   select(where(lubridate::is.Date))
 
-# Select all date/time columns
+# ... and one for date and time columns
 orders %>% 
   select(where(lubridate::is.POSIXct))
 
-# 3. Exclude columns from selection ####
-orders %>% 
-  select(-order_id)
-
-# All columns that end in count, but exclude two of them
-orders %>% 
-  select(ends_with("_at"), -closed_at, -processed_at)
-
-# 4. Select columns by position ####
+# 3. Select columns by position (or index) ####
 
 # Select last column
 orders %>% 
@@ -83,11 +79,21 @@ orders %>%
 orders %>% 
   select(1:last_col(2))
 
+# 4. Columns belonging to a set ####
+
 # Define a set of columns in a vector and select this set
 cols <- c("created_at", "updated_at")
 
 orders %>% 
   select(all_of(cols))
+
+# 5. Exclude columns from selection ####
+orders %>% 
+  select(-order_id)
+
+# All columns that end in count, but exclude two of them
+orders %>% 
+  select(ends_with("_at"), -closed_at, -processed_at)
 
 # Read more...
 # Wickham & Grolemund 2017: Kapitel 3 ab S. 49

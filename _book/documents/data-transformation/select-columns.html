@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></a>
+  <a href="../../documents/data-transformation/data-transformation-operations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Five operations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -253,15 +253,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#the-select-command" id="toc-the-select-command" class="nav-link active" data-scroll-target="#the-select-command"><span class="toc-section-number">7.1</span>  The <code>select</code> command</a></li>
   <li><a href="#by-column-names" id="toc-by-column-names" class="nav-link" data-scroll-target="#by-column-names"><span class="toc-section-number">7.2</span>  By column names</a></li>
   <li>
-<a href="#by-name-patterns" id="toc-by-name-patterns" class="nav-link" data-scroll-target="#by-name-patterns"><span class="toc-section-number">7.3</span>  By name patterns</a>
+<a href="#by-column-name-patterns" id="toc-by-column-name-patterns" class="nav-link" data-scroll-target="#by-column-name-patterns"><span class="toc-section-number">7.3</span>  By column name patterns</a>
   <ul class="collapse">
 <li><a href="#names-starting-with-a-string" id="toc-names-starting-with-a-string" class="nav-link" data-scroll-target="#names-starting-with-a-string">Names starting with a string</a></li>
   <li><a href="#names-ending-with-a-string" id="toc-names-ending-with-a-string" class="nav-link" data-scroll-target="#names-ending-with-a-string">Names ending with a string</a></li>
   <li><a href="#names-with-a-string-anywhere" id="toc-names-with-a-string-anywhere" class="nav-link" data-scroll-target="#names-with-a-string-anywhere">Names with a string anywhere</a></li>
-  <li><a href="#using-regular-expressions" id="toc-using-regular-expressions" class="nav-link" data-scroll-target="#using-regular-expressions">Using regular expressions</a></li>
+  <li><a href="#complex-scenarios-with-regular-expressions" id="toc-complex-scenarios-with-regular-expressions" class="nav-link" data-scroll-target="#complex-scenarios-with-regular-expressions">Complex scenarios with regular expressions</a></li>
+  <li><a href="#combinations-of-patterns" id="toc-combinations-of-patterns" class="nav-link" data-scroll-target="#combinations-of-patterns">Combinations of patterns</a></li>
   </ul>
 </li>
   <li><a href="#by-data-type" id="toc-by-data-type" class="nav-link" data-scroll-target="#by-data-type"><span class="toc-section-number">7.4</span>  By data type</a></li>
+  <li><a href="#by-position" id="toc-by-position" class="nav-link" data-scroll-target="#by-position"><span class="toc-section-number">7.5</span>  By position</a></li>
+  <li><a href="#by-set-affiliation" id="toc-by-set-affiliation" class="nav-link" data-scroll-target="#by-set-affiliation"><span class="toc-section-number">7.6</span>  By set affiliation</a></li>
+  <li><a href="#exclude-columns" id="toc-exclude-columns" class="nav-link" data-scroll-target="#exclude-columns"><span class="toc-section-number">7.7</span>  Exclude columns</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -316,8 +320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When we only want a few columns, this approach works fine and is usually a good choice. I expect you apply this method in more than 90% of all cases. However, there are cases when you’d wish there was something more flexible. Luckily, there is.</p>
-</section><section id="by-name-patterns" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="by-name-patterns">
-<span class="header-section-number">7.3</span> By name patterns</h2>
+</section><section id="by-column-name-patterns" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="by-column-name-patterns">
+<span class="header-section-number">7.3</span> By column name patterns</h2>
 <section id="names-starting-with-a-string" class="level3"><h3 class="anchored" data-anchor-id="names-starting-with-a-string">Names starting with a string</h3>
 <p>Sometimes we want to select columns based on a pattern of their names. Take the orders data set as an example. Here, all variables that contain information about the shipping address have the prefix <code>shipping</code>. We leverage this with the helper function <code>starts_with()</code>:</p>
 <div class="cell">
@@ -329,15 +333,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; [4] "shipping_address_latitude"  "shipping_address_longitude"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="names-ending-with-a-string" class="level3"><h3 class="anchored" data-anchor-id="names-ending-with-a-string">Names ending with a string</h3>
-</section><section id="names-with-a-string-anywhere" class="level3"><h3 class="anchored" data-anchor-id="names-with-a-string-anywhere">Names with a string anywhere</h3>
-</section><section id="using-regular-expressions" class="level3"><h3 class="anchored" data-anchor-id="using-regular-expressions">Using regular expressions</h3>
-</section></section><section id="by-data-type" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="by-data-type">
-<span class="header-section-number">7.4</span> By data type</h2>
+<p>Similar to <code>start_with()</code>, the function <code>ends_with()</code> looks for a string at the end of a column name. For example, all columns that contain a date/time information in the data set end with the suffix <code>_at</code>. We can take advantage of that in case we wanted to select all theses columns efficiently:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">ends_with</span><span class="op">(</span><span class="op">(</span><span class="st">"_at"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span><span class="co">#&gt; [1] "created_at"                            "updated_at"               </span></span>
+<span><span class="co">#&gt; [3] "processed_at"                          "customer_accepts_marketing_updated_at"</span></span>
+<span><span class="co">#&gt; [5] "customer_created_at"                   "customer_updated_at"      </span></span>
+<span><span class="co">#&gt; [7] "cancelled_at"                          "closed_at"     </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="names-with-a-string-anywhere" class="level3"><h3 class="anchored" data-anchor-id="names-with-a-string-anywhere">Names with a string anywhere</h3>
+<p>To complete the picture, we can also search for string somewhere in a column name. The <code>contains()</code> function does exactly that:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">contains</span><span class="op">(</span><span class="st">"price"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; [1] "current_subtotal_price" "current_total_price"    "total_line_items_price"</span></span>
+<span><span class="co"># &gt; [4] "total_price"   </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="complex-scenarios-with-regular-expressions" class="level3"><h3 class="anchored" data-anchor-id="complex-scenarios-with-regular-expressions">Complex scenarios with regular expressions</h3>
+<p>In some cases, it might not be enough to just match strings in column names. It is easy to imagine more complex patterns, involving wildcards or a specifiy order in which symbols must appear in a column name. For all this, regular expressions are a wonderful, albeit complex, solution. If you regularly encounter such complex scenarios, I recommend you familiarize yourself with the basics of regular expressions. I rarely need them myself, and if I do, I look up the expression on the internet using a good Google search.</p>
+<p>I cannot think a useful example in the context of the orders data set. However, the following regular expressions looks for the string <code>_at</code> at the end of the column name. Thus, it mirrors the example from above, but solves it with a regular expression:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">matches</span><span class="op">(</span><span class="st">"_at$"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; [1] "created_at"                            "updated_at"            </span></span>
+<span><span class="co">#&gt; [3] "processed_at"                          "customer_accepts_marketing_updated_at"</span></span>
+<span><span class="co">#&gt; [5] "customer_created_at"                   "customer_updated_at"      </span></span>
+<span><span class="co">#&gt; [7] "cancelled_at"                          "closed_at" </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="combinations-of-patterns" class="level3"><h3 class="anchored" data-anchor-id="combinations-of-patterns">Combinations of patterns</h3>
+<p>We can combine the functions that look for strings in column names to create more specific pattern searches. The example below uses the <code>&amp;</code> operator to connect two functions with a logical <em>and</em>. This means, both expressions must evaluate to <em>true</em> for the column to be selected:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"customer"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu">ends_with</span><span class="op">(</span><span class="st">"_at"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; [1] "customer_accepts_marketing_updated_at" "customer_created_at"      </span></span>
+<span><span class="co">#&gt; [3] "customer_updated_at"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In contrast to <code>filter</code>, where a comma-separated list of expressions combines them with a logical <em>and</em>, when using this approach with <code>select</code>, the resulting columns are combined to a unified set of columns. This means a logical <em>or</em> is applied. For example, <code>select(starts_with("customer"), ends_with("_at")</code> keeps all columns that start with “customer” or that end with <code>_at</code>.</p>
+</div>
+</div>
+</div>
+</section></section><section id="by-data-type" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="by-data-type">
+<span class="header-section-number">7.4</span> By data type</h2>
+<p>Another flexible way to select columns is by their data type. Say we want to select all numeric columns, because we want to calculate the mean value across all of them in the next step of the pipeline. There is shortcut for this, using the <code>where()</code> function in combination with <code>is.numeric</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span> <span class="co">#&gt; [1] "order_id"                      "order_number"                  "app_id"                </span></span>
+<span> <span class="co">#&gt; [4] "current_subtotal_price"        "current_total_price"           "current_total_discounts </span></span>
+<span> <span class="co">#&gt; [7] "current_total_duties_set"      "total_discounts"               "total_line_items_price"  ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Of course there are functions for all other data types as well:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.logical</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
@@ -349,13 +413,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.list</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># The package lubridate provides a function to check for date (without time)</span></span>
+<span><span class="co"># The package lubridate provides a function to check for date (without time) ...</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/date_utils.html">is.Date</a></span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Select all date/time columns</span></span>
+<span><span class="co"># ... and one for date with time</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/posix_utils.html">is.POSIXct</a></span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="by-position" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="by-position">
+<span class="header-section-number">7.5</span> By position</h2>
+<p>Another way we can address columns is by their position or index.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Select last column</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">last_col</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Select last second last column </span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">last_col</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Select first column</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Select a range of columns</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Select everything but the last two columns</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu">last_col</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="by-set-affiliation" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="by-set-affiliation">
+<span class="header-section-number">7.6</span> By set affiliation</h2>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define a set of columns in a vector and select this set</span></span>
+<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"created_at"</span>, <span class="st">"updated_at"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">all_of</span><span class="op">(</span><span class="va">cols</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 2,874 x 2</span></span>
+<span><span class="co">#&gt;   created_at          updated_at         </span></span>
+<span><span class="co">#&gt;   &lt;dttm&gt;              &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1 2019-05-24 12:59:16 2019-06-19 13:23:26</span></span>
+<span><span class="co">#&gt; 2 2019-05-24 13:09:08 2019-06-21 14:40:07</span></span>
+<span><span class="co">#&gt; 3 2019-05-24 13:22:41 2019-06-21 12:35:23</span></span>
+<span><span class="co">#&gt; ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="exclude-columns" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="exclude-columns">
+<span class="header-section-number">7.7</span> Exclude columns</h2>
+<p>The previous sections introduced ways to select columns, that is, specifying what we <em>want</em>. Sometimes it is more efficient to tell R what we <em>don’t want</em>. The minus sign <code>-</code> negates any selection from the previous sections. The following command gives us all columns <em>except</em> the <code>order_id</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">order_id</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can combine positive and negative selections as we need:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">ends_with</span><span class="op">(</span><span class="st">"_at"</span><span class="op">)</span>, <span class="op">-</span><span class="va">closed_at</span>, <span class="op">-</span><span class="va">processed_at</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; [1] "created_at"                            "updated_at"            </span></span>
+<span><span class="co">#&gt; [3] "customer_accepts_marketing_updated_at" "customer_created_at"      </span></span>
+<span><span class="co">#&gt; [5] "customer_updated_at"                   "cancelled_at"   </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -458,7 +580,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../../documents/data-transformation/data-transformation-operations.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Operations</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Five operations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
