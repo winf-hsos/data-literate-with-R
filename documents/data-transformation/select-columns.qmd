@@ -18,7 +18,7 @@ orders <- read_csv(here("data", "orders.csv"))
 
 This chapter introduces tools to remove unnecessary columns from the data set. Or, positively stated, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the `{dplyr}` package.
 
-## The `select` command
+## The `select` command {#sec-select-command}
 
 The function `select()` is the designated tool to select columns with `{dplyr}`. By passing different things to the function, we can efficiently define the set of columns in the resulting data frame.
 
@@ -94,7 +94,7 @@ orders %>%
   colnames()
 
 #> [1] "current_subtotal_price" "current_total_price"    "total_line_items_price"
-# > [4] "total_price"   
+#> [4] "total_price"   
 ```
 
 ### Complex scenarios with regular expressions
@@ -128,7 +128,7 @@ orders %>%
 ```
 
 ::: {.callout-note appearance="simple" icon="false"}
-In contrast to `filter`, where a comma-separated list of expressions combines them with a logical *and*, when using this approach with `select`, the resulting columns are combined to a unified set of columns. This means a logical *or* is applied. For example, `select(starts_with("customer"), ends_with("_at")` keeps all columns that start with "customer" or that end with `_at`.
+In contrast to `filter`, where a comma-separated list of expressions combines them with a logical *and*, when using this approach with `select`, the resulting columns are combined to a unified set of columns. This means a logical *or* is applied. For example, listing `starts_with("customer")` and `ends_with("_at")` separated by a comma keeps all columns that start with "customer" or that end with "_at".
 :::
 
 ## By data type

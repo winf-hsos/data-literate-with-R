@@ -265,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#the-select-command" id="toc-the-select-command" class="nav-link active" data-scroll-target="#the-select-command"><span class="toc-section-number">7.1</span>  The <code>select</code> command</a></li>
+<li><a href="#sec-select-command" id="toc-sec-select-command" class="nav-link active" data-scroll-target="#sec-select-command"><span class="toc-section-number">7.1</span>  The <code>select</code> command</a></li>
   <li><a href="#by-column-names" id="toc-by-column-names" class="nav-link" data-scroll-target="#by-column-names"><span class="toc-section-number">7.2</span>  By column names</a></li>
   <li>
 <a href="#by-column-name-patterns" id="toc-by-column-name-patterns" class="nav-link" data-scroll-target="#by-column-name-patterns"><span class="toc-section-number">7.3</span>  By column name patterns</a>
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 <p>This chapter introduces tools to remove unnecessary columns from the data set. Or, positively stated, we learn how to specify the columns we need for our analysis. As with most data transformation operations, we mostly introduce functions from the <a href="https://dplyr.tidyverse.org">dplyr</a> package.</p>
-<section id="the-select-command" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="the-select-command">
+<section id="sec-select-command" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="sec-select-command">
 <span class="header-section-number">7.1</span> The <code>select</code> command</h2>
 <p>The function <code>select()</code> is the designated tool to select columns with <a href="https://dplyr.tidyverse.org">dplyr</a>. By passing different things to the function, we can efficiently define the set of columns in the resulting data frame.</p>
 </section><section id="by-column-names" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="by-column-names">
@@ -367,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#&gt; [1] "current_subtotal_price" "current_total_price"    "total_line_items_price"</span></span>
-<span><span class="co"># &gt; [4] "total_price"   </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [4] "total_price"   </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="complex-scenarios-with-regular-expressions" class="level3"><h3 class="anchored" data-anchor-id="complex-scenarios-with-regular-expressions">Complex scenarios with regular expressions</h3>
 <p>In some cases, it might not be enough to just match strings in column names. It is easy to imagine more complex patterns, involving wildcards or a specifiy order in which symbols must appear in a column name. For all this, regular expressions are a wonderful, albeit complex, solution. If you regularly encounter such complex scenarios, I recommend you familiarize yourself with the basics of regular expressions. I rarely need them myself, and if I do, I look up the expression on the internet using a good Google search.</p>
@@ -398,7 +398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>In contrast to <code>filter</code>, where a comma-separated list of expressions combines them with a logical <em>and</em>, when using this approach with <code>select</code>, the resulting columns are combined to a unified set of columns. This means a logical <em>or</em> is applied. For example, <code>select(starts_with("customer"), ends_with("_at")</code> keeps all columns that start with “customer” or that end with <code>_at</code>.</p>
+<p>In contrast to <code>filter</code>, where a comma-separated list of expressions combines them with a logical <em>and</em>, when using this approach with <code>select</code>, the resulting columns are combined to a unified set of columns. This means a logical <em>or</em> is applied. For example, listing <code>starts_with("customer")</code> and <code>ends_with("_at")</code> separated by a comma keeps all columns that start with “customer” or that end with “_at”.</p>
 </div>
 </div>
 </div>
