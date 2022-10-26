@@ -2,6 +2,8 @@
 title: "Five operations"
 ---
 
+## Uncovering the value in the data
+
 Data is the new oil, at least according to the mathematician [Clive Humby](https://en.wikipedia.org/wiki/Clive_Humby):
 
 > "Data is the new oil. Like oil, data is valuable, but if unrefined, it cannot really be used. It has to be changed into gas, plastic, chemicals, etc. to create a valuable entity that drives profitable activity. So, must data be broken down, analysed for it to have value."
@@ -17,3 +19,16 @@ To master data transformation, we need to learn how to perform the following ope
 5.  ... change the order of the records
 
 The goal of the following chapters is to introduce means to perform theses five operations with R.
+
+## A little helper in data transformation
+
+To better understand what a transformation step does to our original data, there is a package called `{tidylog}` to help us. When the package is loaded, it overrides some of the `{dplyr}` functions and adds an extra output to the console. The output depends on the particular function, but in general, it gives us information about:
+
+- How many columns where dropped by a `select` command
+- How many rows where dropped by a `filter` command
+
+
+```{r}
+library(tidylog)
+```
+

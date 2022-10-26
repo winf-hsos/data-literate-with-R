@@ -4,20 +4,12 @@ editor_options:
   chunk_output_type: console
 ---
 
-##  {visibility="hidden"}
-
-```{r setup}
-#| echo: false
-#| output: false
-#| warning: false
-knitr::opts_knit$set(root.dir = '../..')
-library(tidyverse)
-library(here)
-```
-
 ```{r}
 #| echo: false
 #| output: false
+library(tidyverse)
+library(here)
+
 some_data <- read_csv(here("data", "some_data.csv"))
 
 anscombe1 <- read_csv(here("data", "anscombe1.csv")) %>% 

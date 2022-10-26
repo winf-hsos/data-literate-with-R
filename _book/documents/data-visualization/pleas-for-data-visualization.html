@@ -265,11 +265,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="toc-section-number">13.1</span>  </a></li>
-  <li><a href="#numbers-tell-only-a-part-of-the-story" id="toc-numbers-tell-only-a-part-of-the-story" class="nav-link" data-scroll-target="#numbers-tell-only-a-part-of-the-story"><span class="toc-section-number">13.2</span>  Numbers tell only a part of the story</a></li>
-  <li><a href="#visualization-can-reveal-hidden-patterns" id="toc-visualization-can-reveal-hidden-patterns" class="nav-link" data-scroll-target="#visualization-can-reveal-hidden-patterns"><span class="toc-section-number">13.3</span>  Visualization can reveal hidden patterns</a></li>
-  <li><a href="#anscombes-quartet" id="toc-anscombes-quartet" class="nav-link" data-scroll-target="#anscombes-quartet"><span class="toc-section-number">13.4</span>  Anscombe’s Quartet</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">13.5</span>  References</a></li>
+<li><a href="#numbers-tell-only-a-part-of-the-story" id="toc-numbers-tell-only-a-part-of-the-story" class="nav-link active" data-scroll-target="#numbers-tell-only-a-part-of-the-story"><span class="toc-section-number">13.1</span>  Numbers tell only a part of the story</a></li>
+  <li><a href="#visualization-can-reveal-hidden-patterns" id="toc-visualization-can-reveal-hidden-patterns" class="nav-link" data-scroll-target="#visualization-can-reveal-hidden-patterns"><span class="toc-section-number">13.2</span>  Visualization can reveal hidden patterns</a></li>
+  <li><a href="#anscombes-quartet" id="toc-anscombes-quartet" class="nav-link" data-scroll-target="#anscombes-quartet"><span class="toc-section-number">13.3</span>  Anscombe’s Quartet</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">13.4</span>  References</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -288,17 +287,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><section id="section" class="level2" data-visibility="hidden" data-number="13.1"><h2 data-visibility="hidden" data-number="13.1" class="anchored" data-anchor-id="section">
-<span class="header-section-number">13.1</span> </h2>
-<div class="cell">
-
-</div>
-<div class="cell">
+</header><div class="cell">
 
 </div>
 <p>The R code for the following sections is also available as plain <code>.R</code> scripts. If you downloaded the ZIP-file and you view this as a PDF-document, you find the <code>.R</code> files in the same folder as this document.</p>
-</section><section id="numbers-tell-only-a-part-of-the-story" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="numbers-tell-only-a-part-of-the-story">
-<span class="header-section-number">13.2</span> Numbers tell only a part of the story</h2>
+<section id="numbers-tell-only-a-part-of-the-story" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="numbers-tell-only-a-part-of-the-story">
+<span class="header-section-number">13.1</span> Numbers tell only a part of the story</h2>
 <p>To illustrate why data visualization is useful, let’s look at two examples. Below we read some data from a CSV-file.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/some_data.csv"</span><span class="op">)</span></span>
@@ -363,8 +357,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>From the rather small value, we could hypothesize that the variables are unrelated. But are they?</p>
-</section><section id="visualization-can-reveal-hidden-patterns" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="visualization-can-reveal-hidden-patterns">
-<span class="header-section-number">13.3</span> Visualization can reveal hidden patterns</h2>
+</section><section id="visualization-can-reveal-hidden-patterns" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="visualization-can-reveal-hidden-patterns">
+<span class="header-section-number">13.2</span> Visualization can reveal hidden patterns</h2>
 <p>Let’s add visualization to our toolkit and find out:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">some_data</span> <span class="op">%&gt;%</span> </span>
@@ -421,8 +415,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="pleas-for-data-visualization_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="anscombes-quartet" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="anscombes-quartet">
-<span class="header-section-number">13.4</span> Anscombe’s Quartet</h2>
+</section><section id="anscombes-quartet" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="anscombes-quartet">
+<span class="header-section-number">13.3</span> Anscombe’s Quartet</h2>
 <p>Another and even older plea for the visualization of data can be found in Francis Anscombe’s publication <em>Graphs in Statistical Analysis</em> from the year 1973. In his paper, Anscombe presents four data sets that look very much the same when viewing the common descriptive statistical measures. Again, only by visualizing the data can we see the otherwise hidden patterns.</p>
 <p>Let’s load the data and see for ourselves:</p>
 <div class="cell">
@@ -490,8 +484,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The first plot shows a linear trend with some noise, as we might already have suspected from a correlation coefficient of roughly 0.81. The second plot, although having the same correlation coefficient, displays a non-linear trajectory. The third plot would have had a perfect correlation if it wasn’t for the single outlier. In contrast, the last plot would have had no correlation between <code>x</code> and <code>y</code>, if the point on the very top-right didn’t exist. Again, we could not have gotten this insight from any statistical measure we can calculate.</p>
 <p>I hope the examples convinced you of the importance of data visualization. There are even more good reasons why we should visualize data, besides revealing hidden patterns. We know from psychological research about the way humans process information that visualizations are a much faster way into our brains. We can not only grasp what we see in a good data visualization faster, but also comprehend it better and create a better memory of it. If that doesn’t convince you, nothing will.</p>
-</section><section id="references" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="references">
-<span class="header-section-number">13.5</span> References</h2>
+</section><section id="references" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="references">
+<span class="header-section-number">13.4</span> References</h2>
 <ul>
 <li><p><a href="https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html">The official website of the <code>{datasauRus}</code> package</a></p></li>
 <li><p><a href="https://www.youtube.com/watch?v=Kd--Q-aTwpM">YouTube video on Anscombe’s Quartet</a></p></li>
