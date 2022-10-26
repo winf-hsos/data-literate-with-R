@@ -5,6 +5,10 @@ quarto_preview_stop()
 
 wd <- getwd()
 
+# Build parameters
+quiet <- FALSE
+render_docs = TRUE
+
 # Create output directories ####
 unlink("output", recursive = TRUE)
 dir.create("output")
@@ -36,19 +40,25 @@ dir.create("output/slides")
 print("Created output directories...")
 
 # Render single documents to PDF
-qmd_list <- list.files("documents", ".qmd", full.names = TRUE, recursive = TRUE)
-quarto_render(qmd_list, output_format = "pdf", quiet = TRUE)
+if(render_docs == TRUE) {
+  
+  print("Start rendering PDF documents...")
+  
+  qmd_list <- list.files("documents", ".qmd", full.names = TRUE, recursive = TRUE)
+  quarto_render(qmd_list, output_format = "pdf", quiet = quiet)
+  
+  print("Finished rendering PDF documents...")
+}
 
 # Copy .pdf files
 pdf_list <- list.files("documents", ".pdf", full.names = TRUE, recursive = TRUE)
 pdf_dest_list <- gsub("documents/", "output/docs/", pdf_list)
 file.copy(pdf_list, pdf_dest_list, overwrite = TRUE)
-
-print("Rendered and copied PDF documents...")
+print("Copied PDF documents...")
 
 # Render exercises to PDF
 qmd_list <- list.files("exercises", ".qmd", full.names = TRUE, recursive = TRUE)
-quarto_render(qmd_list, output_format = "pdf", quiet = TRUE)
+quarto_render(qmd_list, output_format = "pdf", quiet = quiet)
 
 # Copy .pdf files
 pdf_list <- list.files("exercises", ".pdf", full.names = TRUE, recursive = TRUE)
@@ -60,7 +70,7 @@ print("Rendered and copied exercises...")
 # Copy .R files
 r_list <- list.files("scripts", ".R", full.names = TRUE, recursive = TRUE)
 r_dest_list <- gsub("scripts/", "output/scripts/", r_list)
-file.copy(r_dest_list, r_dest_list, overwrite = TRUE)
+file.copy(r_list, r_dest_list, overwrite = TRUE)
 
 # Copy the data files #### 
 data_list <- list.files("data", ".csv", full.names = TRUE, recursive = TRUE)
@@ -89,7 +99,7 @@ writeLines(lines, r_proj_file)
 print("Created R-project file...")
 
 # Render and copy the book ####
-quarto_render("index.qmd", quiet = TRUE)
+quarto_render("index.qmd", quiet = quiet)
 
 # Copy the book as PDF
 file.copy("_book/Data-Literate-with-R.pdf", "output/book")
