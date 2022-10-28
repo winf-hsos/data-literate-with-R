@@ -20,7 +20,7 @@ To master data transformation, we need to learn how to perform the following ope
 
 The goal of the following chapters is to introduce means to perform theses five operations with R.
 
-## A little helper in data transformation
+## A helper in data transformation
 
 To better understand what a transformation step does to our original data, there is a package called `{tidylog}` to help us. When the package is loaded, it overrides some of the `{dplyr}` functions and adds an extra output to the console. The output depends on the particular function, but in general, it gives us information about:
 

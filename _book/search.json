@@ -77,11 +77,11 @@
     "text": "Data is the new oil, at least according to the mathematician Clive Humby:\n\n“Data is the new oil. Like oil, data is valuable, but if unrefined, it cannot really be used. It has to be changed into gas, plastic, chemicals, etc. to create a valuable entity that drives profitable activity. So, must data be broken down, analysed for it to have value.”\n\nIf we take this analogy seriously, the data, like oil, needs to be refined to turn it into something of value. Two important tools for refining data into a valuable output are data transformation and data visualization, both of which are the main focus of this book. In this part of the book, we first need to learn how to transform data from one form into another, so that we can apply visualization later on.\nTo master data transformation, we need to learn how to perform the following operations. We always start with a given data frame that we want to change into something else. In doing that, we typically want to …\n\n… remove variables we don’t currently need (or specify those we do need)\n… remove any records we don’t currently need (or specify those we do need)\n… add new variables we need, but that don’t exist yet\n… summarize many records into one or a few numbers\n… change the order of the records\n\nThe goal of the following chapters is to introduce means to perform theses five operations with R."
   },
   {
-    "objectID": "documents/data-transformation/data-transformation-operations.html#a-little-helper-in-data-transformation",
-    "href": "documents/data-transformation/data-transformation-operations.html#a-little-helper-in-data-transformation",
+    "objectID": "documents/data-transformation/data-transformation-operations.html#a-helper-in-data-transformation",
+    "href": "documents/data-transformation/data-transformation-operations.html#a-helper-in-data-transformation",
     "title": "\n6  Five operations\n",
-    "section": "\n6.2 A little helper in data transformation",
-    "text": "6.2 A little helper in data transformation\nTo better understand what a transformation step does to our original data, there is a package called tidylog to help us. When the package is loaded, it overrides some of the dplyr functions and adds an extra output to the console. The output depends on the particular function, but in general, it gives us information about:\n\nHow many columns where dropped by a select command\nHow many rows where dropped by a filter command\n\n\nlibrary(tidylog)\n\n\nAttache Paket: 'tidylog'\n\n\nDas folgende Objekt ist maskiert 'package:stats':\n\n    filter"
+    "section": "\n6.2 A helper in data transformation",
+    "text": "6.2 A helper in data transformation\nTo better understand what a transformation step does to our original data, there is a package called tidylog to help us. When the package is loaded, it overrides some of the dplyr functions and adds an extra output to the console. The output depends on the particular function, but in general, it gives us information about:\n\nHow many columns where dropped by a select command\nHow many rows where dropped by a filter command\n\n\nlibrary(tidylog)\n\n\nAttache Paket: 'tidylog'\n\n\nDas folgende Objekt ist maskiert 'package:stats':\n\n    filter"
   },
   {
     "objectID": "documents/data-transformation/select-columns.html",
@@ -140,39 +140,53 @@
     "text": "7.7 Exclude columns\nThe previous sections introduced ways to select columns, that is, specifying what we want. Sometimes it is more efficient to tell R what we don’t want. The minus sign - negates any selection from the previous sections. The following command gives us all columns except the order_id:\n\norders %>% \n  select(-order_id)\n\nWe can combine positive and negative selections as we need:\n\norders %>% \n  select(ends_with(\"_at\"), -closed_at, -processed_at) %>% \n  colnames()\n\n#> [1] \"created_at\"                            \"updated_at\"            \n#> [3] \"customer_accepts_marketing_updated_at\" \"customer_created_at\"      \n#> [5] \"customer_updated_at\"                   \"cancelled_at\""
   },
   {
-    "objectID": "documents/data-transformation/filter-rows.html",
-    "href": "documents/data-transformation/filter-rows.html",
+    "objectID": "documents/data-transformation/filter-rows.html#summary",
+    "href": "documents/data-transformation/filter-rows.html#summary",
     "title": "\n8  Filter rows\n",
-    "section": "",
-    "text": "Besides selecting the columns we need, we also have to learn tools to restrict the rows in data frame. The means to do that with the dplyr package is the filter command."
+    "section": "Summary",
+    "text": "Summary\nThis chapter introduces the following new concepts and functions:\n\nfilter()\nArithmetic operators such as ==, !=, >´,<,>=, and<=`\nLogical operators such as &, |, and xor()\n\nThe between() function\n\nslice() and its variants"
   },
   {
     "objectID": "documents/data-transformation/filter-rows.html#sec-filter-command",
     "href": "documents/data-transformation/filter-rows.html#sec-filter-command",
     "title": "\n8  Filter rows\n",
     "section": "\n8.1 The filter command",
-    "text": "8.1 The filter command\nThe filter command takes one or more expressions, which must evaluate to TRUE or FALSE. These types of expressions are called boolean expressions, named after George Boole, who invented the Boolean algebra. Every expression passed to the filter command is evaluated for every row in the data frame. Only if the expression returns TRUE for a row, this row is included in the resulting data frame.\nTo form expressions, we can use a number of operators and functions. This chapter introduces the basic ways to express filter conditions on our data."
+    "text": "8.1 The filter command\nBesides selecting the columns we need, we need tools to restrict the rows in a data frame. For this, the dplyr package offers the filter command.\nThe filter command takes one or more expressions, which must evaluate to TRUE or FALSE. These types of expressions are called boolean expressions, named after George Boole, who invented the Boolean algebra. Every expression passed to the filter command is evaluated for every row in the data frame. Only if the expression returns TRUE for a row, this row is included in the resulting data frame.\nTo form expressions, we can use a number of operators and functions. This chapter introduces the basic ways to express filter conditions on our data."
   },
   {
     "objectID": "documents/data-transformation/filter-rows.html#equals-operator",
     "href": "documents/data-transformation/filter-rows.html#equals-operator",
     "title": "\n8  Filter rows\n",
     "section": "\n8.2 Equals operator",
-    "text": "8.2 Equals operator\nThe simplest way to filter data is to compare the value of a column to a given value. This way, we can get all orders from female customers:\n\norders %>% \n  filter(customer_gender == \"f\")\n\n#> filter: removed 1,613 rows (56%), 1,261 rows remaining\n\nAs you can see, the equals operator consists of two equal signs in a row (==). This is important, as using only one equals sign results in an error. A single equals sign is reserved for assignments, such as when we create a new column with mutate.\nIn the example above, the customer_gender column is of the data type chr, which means it contains alphanumeric symbols. For such columns, when comparing values, we must enclose the literal values with quotations marks. This is because the data type chr can contain spaces. If we didn’t use quotation marks, R wouldn’t know where the string of alphanumeric character starts and ends.\nThe equals comparison == is useful mostly for discrete data types. Un R, these include strings (or chr), whole numbers (integer), dates, and factors. Data types such as decimal numbers (double) or datetime can in principle compared to a specific value using the comparison operator ==, but given their continuous nature, it usually doesn’t make too much sense. Artihmetic operators, such as less or greater than, are much more useful in these cases."
+    "text": "8.2 Equals operator\nThe simplest way to filter data is to compare column to a given value. This way, we can get all orders from female customers:\n\norders %>% \n  filter(customer_gender == \"f\")\n\n#> filter: removed 1,613 rows (56%), 1,261 rows remaining\n\nAs you can see, the equals operator in R consists of two equal signs in a row (==). This is important, as using only one equals sign results in an error. A single equals sign is reserved for assignments, such as when we create a new column with mutate.\nIn the example above, the customer_gender column is of the data type chr, which means it contains alphanumeric symbols. For such columns, when comparing values, we must enclose the literal values with quotations marks. This is because the data type chr can contain spaces. If we didn’t use quotation marks, R wouldn’t know where the string of alphanumeric character starts and ends.\nThe equals comparison == is useful mostly for discrete data types. Un R, these include strings (or chr), whole numbers (integer), dates, and factors. Data types such as decimal numbers (double) or datetime can in principle compared to a specific value using the comparison operator ==, but given their continuous nature, it usually doesn’t make too much sense. Arithmetic operators, such as less than or greater than, are much more useful in these cases."
   },
   {
     "objectID": "documents/data-transformation/filter-rows.html#arithmetic-operators",
     "href": "documents/data-transformation/filter-rows.html#arithmetic-operators",
     "title": "\n8  Filter rows\n",
     "section": "\n8.3 Arithmetic operators",
-    "text": "8.3 Arithmetic operators\n\norders %>% \n  filter(total_price < 50)\n\n#> filter: removed 633 rows (22%), 2,241 rows remaining"
+    "text": "8.3 Arithmetic operators\nThe following filter removes all rows where the total price is below 50 euros:\n\norders %>% \n  filter(total_price < 50)\n\n#> filter: removed 633 rows (22%), 2,241 rows remaining\n\nWe can combine filter conditions by listing them comma-separated:\n\norders %>% \n  filter(total_price < 50, customer_gender == \"f\")\n\n#> filter: removed 1,868 rows (65%), 1,006 rows remaining\n\nThis is equivalent to having two subsequent filter statements in a pipeline:\n\norders %>% \n  filter(total_price < 50) %>% \n  filter(customer_gender == \"f\")\n\n#> filter: removed 633 rows (22%), 2,241 rows remaining\n#> filter: removed 1,235 rows (55%), 1,006 rows remaining"
   },
   {
     "objectID": "documents/data-transformation/filter-rows.html#logical-combinations-of-filter-expressions",
     "href": "documents/data-transformation/filter-rows.html#logical-combinations-of-filter-expressions",
     "title": "\n8  Filter rows\n",
     "section": "\n8.4 Logical combinations of filter expressions",
-    "text": "8.4 Logical combinations of filter expressions\nWhen we list two filter expressions separated by comma, they are connected with the logical operator and:\n\n# Customer who are female and university staff at the same time\norders %>% \n  filter(customer_gender == \"f\", customer_is_hsos == TRUE)\n\n#> filter: removed 2,651 rows (92%), 223 rows remaining\n\nWe can do that explicitly by using the official and operator, which is denoted by the symbol &.\n\n# Same as above, with explicit AND symbol\norders %>% \n  filter(customer_gender == \"f\" & customer_is_hsos == TRUE)\n\nAnother option is the logical or, which is symbolized by the | character:\n\n# Customers who are either female or university staff (or both)\norders %>% \n  filter(customer_gender == \"f\" | customer_is_hsos == TRUE)\n\n#> filter: removed 1,352 rows (47%), 1,522 rows remaining"
+    "text": "8.4 Logical combinations of filter expressions\nAs shown above, When we list two filter expressions separated by comma, they are connected with the logical operator and:\n\n# Customer who are female and university staff at the same time\norders %>% \n  filter(customer_gender == \"f\", customer_is_hsos == TRUE)\n\n#> filter: removed 2,651 rows (92%), 223 rows remaining\n\nWe can do that explicitly by using the official and operator, which is denoted by the symbol &.\n\n# Same as above, with explicit AND symbol\norders %>% \n  filter(customer_gender == \"f\" & customer_is_hsos == TRUE)\n\n#> filter: removed 2,651 rows (92%), 223 rows remaining \n\nOr by having two subsequent filter command in our pipeline:\n\n# Same as above, but with two filter commands in a row\norders %>% \n  filter(customer_gender == \"f\") %>% \n  filter(customer_is_hsos == TRUE)\n\n#> filter: removed 1,613 rows (56%), 1,261 rows remaining\n#> filter: removed 1,038 rows (82%), 223 rows remaining\n\nAn advantage of two filter commands is that the tidylog package prints the effect for each of the two filter expressions separately. So if we are interested in that, this is a good option.\nAnother way to logically combine filter expressions is the OR operator, which is symbolized by the | character:\n\n# Customers who are either female or university staff (or both)\norders %>% \n  filter(customer_gender == \"f\" | customer_is_hsos == TRUE)\n\n#> filter: removed 1,352 rows (47%), 1,522 rows remaining\n\nThe OR operator is fundamentally different to the AND operator. In contrast to the example with the AND, a row in the OR example must only meet one of the two conditions to be kept in the result. It can meet both, but only one is required. Only if both evaluate to FALSE, the row is removed."
+  },
+  {
+    "objectID": "documents/data-transformation/filter-rows.html#the-between-function",
+    "href": "documents/data-transformation/filter-rows.html#the-between-function",
+    "title": "\n8  Filter rows\n",
+    "section": "\n8.5 The between function",
+    "text": "8.5 The between function\nIf we want to keep records whose value for numerical column is within a give range, we can achieve this with the logical AND:\n\norders %>% \n  filter(total_price >= 10 & total_price <= 20) %>% \n  select(total_price)\n\n#> filter: removed 2,392 rows (83%), 482 rows remaining\n#> select: dropped 67 variables (order_id, name, order_number, app_id, created_at, …)¦)\n#> # A tibble: 482 x 1\n#>    total_price\n#>          <dbl>\n#>  1        10  \n#>  2        12  \n#>  3        15.0\n#>  4        14.9\n#>  ...\n\nFor filtering on ranges, the between() function is an alternative:\n\n# This is equivalent and a bit more efficient than a combination of >= and <=\norders %>% \n  filter(between(total_price, 10, 20))\n\n#> filter: removed 2,392 rows (83%), 482 rows remaining"
+  },
+  {
+    "objectID": "documents/data-transformation/filter-rows.html#filtering-based-on-a-records-index",
+    "href": "documents/data-transformation/filter-rows.html#filtering-based-on-a-records-index",
+    "title": "\n8  Filter rows\n",
+    "section": "\n8.6 Filtering based on a record’s index",
+    "text": "8.6 Filtering based on a record’s index\n\n# Keep only the first row\norders %>% \n  slice(1)\n\n\n# Keep the first 10 rows\norders %>% \n  slice(1:10)"
   },
   {
     "objectID": "book-parts/data-visualization.html",

@@ -265,10 +265,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#sec-filter-command" id="toc-sec-filter-command" class="nav-link active" data-scroll-target="#sec-filter-command"><span class="toc-section-number">8.1</span>  The <code>filter</code> command</a></li>
+<li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#sec-filter-command" id="toc-sec-filter-command" class="nav-link" data-scroll-target="#sec-filter-command"><span class="toc-section-number">8.1</span>  The <code>filter</code> command</a></li>
   <li><a href="#equals-operator" id="toc-equals-operator" class="nav-link" data-scroll-target="#equals-operator"><span class="toc-section-number">8.2</span>  Equals operator</a></li>
   <li><a href="#arithmetic-operators" id="toc-arithmetic-operators" class="nav-link" data-scroll-target="#arithmetic-operators"><span class="toc-section-number">8.3</span>  Arithmetic operators</a></li>
   <li><a href="#logical-combinations-of-filter-expressions" id="toc-logical-combinations-of-filter-expressions" class="nav-link" data-scroll-target="#logical-combinations-of-filter-expressions"><span class="toc-section-number">8.4</span>  Logical combinations of filter expressions</a></li>
+  <li><a href="#the-between-function" id="toc-the-between-function" class="nav-link" data-scroll-target="#the-between-function"><span class="toc-section-number">8.5</span>  The <code>between</code> function</a></li>
+  <li><a href="#filtering-based-on-a-records-index" id="toc-filtering-based-on-a-records-index" class="nav-link" data-scroll-target="#filtering-based-on-a-records-index"><span class="toc-section-number">8.6</span>  Filtering based on a record’s index</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -290,36 +293,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header><div class="cell">
 
 </div>
-<p>Besides <a href="select-columns.html#sec-select-command">selecting the columns</a> we need, we also have to learn tools to restrict the rows in data frame. The means to do that with the <a href="https://dplyr.tidyverse.org">dplyr</a> package is the <code>filter</code> command.</p>
-<section id="sec-filter-command" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="sec-filter-command">
+<section id="summary" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
+<p>This chapter introduces the following new concepts and functions:</p>
+<ul>
+<li><code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code></li>
+<li>Arithmetic operators such as <code>==</code>, <code>!=</code>, <code>&gt;´,</code>&lt;<code>,</code>&gt;=<code>, and</code>&lt;=`</li>
+<li>Logical operators such as <code>&amp;</code>, <code>|</code>, and <code><a href="https://rdrr.io/r/base/Logic.html">xor()</a></code>
+</li>
+<li>The <code>between()</code> function</li>
+<li>
+<code>slice()</code> and its variants</li>
+</ul></section><section id="sec-filter-command" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="sec-filter-command">
 <span class="header-section-number">8.1</span> The <code>filter</code> command</h2>
+<p>Besides <a href="select-columns.html#sec-select-command">selecting the columns</a> we need, we need tools to restrict the rows in a data frame. For this, the <a href="https://dplyr.tidyverse.org">dplyr</a> package offers the <code>filter</code> command.</p>
 <p>The <code>filter</code> command takes one or more expressions, which must evaluate to <code>TRUE</code> or <code>FALSE</code>. These types of expressions are called <em>boolean expressions</em>, named after <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>, who invented the <a href="https://en.wikipedia.org/wiki/Boolean_algebra">Boolean algebra</a>. Every expression passed to the <code>filter</code> command is evaluated for every row in the data frame. Only if the expression returns <code>TRUE</code> for a row, this row is included in the resulting data frame.</p>
 <p>To form expressions, we can use a number of operators and functions. This chapter introduces the basic ways to express filter conditions on our data.</p>
 </section><section id="equals-operator" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="equals-operator">
 <span class="header-section-number">8.2</span> Equals operator</h2>
-<p>The simplest way to filter data is to compare the value of a column to a given value. This way, we can get all orders from female customers:</p>
+<p>The simplest way to filter data is to compare column to a given value. This way, we can get all orders from female customers:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#&gt; filter: removed 1,613 rows (56%), 1,261 rows remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As you can see, the equals operator consists of two equal signs in a row (<code>==</code>). This is important, as using only one equals sign results in an error. A single equals sign is reserved for assignments, such as when we create a new column with <code>mutate</code>.</p>
+<p>As you can see, the equals operator in R consists of two equal signs in a row (<code>==</code>). This is important, as using only one equals sign results in an error. A single equals sign is reserved for assignments, such as when we create a new column with <a href="add-columns.html#sec-mutate-command"><code>mutate</code></a>.</p>
 <p>In the example above, the <code>customer_gender</code> column is of the data type <code>chr</code>, which means it contains alphanumeric symbols. For such columns, when comparing values, we must enclose the literal values with quotations marks. This is because the data type <code>chr</code> can contain spaces. If we didn’t use quotation marks, R wouldn’t know where the string of alphanumeric character starts and ends.</p>
-<p>The equals comparison <code>==</code> is useful mostly for discrete data types. Un R, these include strings (or <code>chr</code>), whole numbers (<code>integer</code>), dates, and factors. Data types such as decimal numbers (<code>double</code>) or datetime can in principle compared to a specific value using the comparison operator <code>==</code>, but given their continuous nature, it usually doesn’t make too much sense. Artihmetic operators, such as less or greater than, are much more useful in these cases.</p>
+<p>The equals comparison <code>==</code> is useful mostly for discrete data types. Un R, these include strings (or <code>chr</code>), whole numbers (<code>integer</code>), dates, and factors. Data types such as decimal numbers (<code>double</code>) or datetime can in principle compared to a specific value using the comparison operator <code>==</code>, but given their continuous nature, it usually doesn’t make too much sense. Arithmetic operators, such as less than or greater than, are much more useful in these cases.</p>
 </section><section id="arithmetic-operators" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="arithmetic-operators">
 <span class="header-section-number">8.3</span> Arithmetic operators</h2>
+<p>The following filter removes all rows where the total price is below 50 euros:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">total_price</span> <span class="op">&lt;</span> <span class="fl">50</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#&gt; filter: removed 633 rows (22%), 2,241 rows remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>We can combine filter conditions by listing them comma-separated:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">total_price</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; filter: removed 1,868 rows (65%), 1,006 rows remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is equivalent to having two subsequent <code>filter</code> statements in a pipeline:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">total_price</span> <span class="op">&lt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; filter: removed 633 rows (22%), 2,241 rows remaining</span></span>
+<span><span class="co">#&gt; filter: removed 1,235 rows (55%), 1,006 rows remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section><section id="logical-combinations-of-filter-expressions" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="logical-combinations-of-filter-expressions">
 <span class="header-section-number">8.4</span> Logical combinations of filter expressions</h2>
-<p>When we list two filter expressions separated by comma, they are connected with the logical operator <em>and</em>:</p>
+<p>As shown above, When we list two filter expressions separated by comma, they are connected with the logical operator <em>and</em>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Customer who are female and university staff at the same time</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Customer who are female and university staff at the same time</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span>, <span class="va">customer_is_hsos</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -327,17 +357,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We can do that explicitly by using the official <em>and</em> operator, which is denoted by the symbol <code>&amp;</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Same as above, with explicit AND symbol</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Same as above, with explicit AND symbol</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">customer_is_hsos</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">customer_is_hsos</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; filter: removed 2,651 rows (92%), 223 rows remaining </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Another option is the logical <em>or</em>, which is symbolized by the <code>|</code> character:</p>
+<p>Or by having two subsequent <code>filter</code> command in our pipeline:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Customers who are either female or university staff (or both)</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Same as above, but with two filter commands in a row</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_is_hsos</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; filter: removed 1,613 rows (56%), 1,261 rows remaining</span></span>
+<span><span class="co">#&gt; filter: removed 1,038 rows (82%), 223 rows remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>An advantage of two <code>filter</code> commands is that the <a href="https://github.com/elbersb/tidylog/">tidylog</a> package prints the effect for each of the two filter expressions separately. So if we are interested in that, this is a good option.</p>
+<p>Another way to logically combine filter expressions is the <em>OR</em> operator, which is symbolized by the <code>|</code> character:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Customers who are either female or university staff (or both)</span></span>
 <span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">customer_gender</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">|</span> <span class="va">customer_is_hsos</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#&gt; filter: removed 1,352 rows (47%), 1,522 rows remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <em>OR</em> operator is fundamentally different to the <em>AND</em> operator. In contrast to the example with the <em>AND</em>, a row in the <em>OR</em> example must only meet one of the two conditions to be kept in the result. It can meet both, but only one is required. Only if both evaluate to <code>FALSE</code>, the row is removed.</p>
+</section><section id="the-between-function" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="the-between-function">
+<span class="header-section-number">8.5</span> The <code>between</code> function</h2>
+<p>If we want to keep records whose value for numerical column is within a give range, we can achieve this with the logical <em>AND</em>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">total_price</span> <span class="op">&gt;=</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">total_price</span> <span class="op">&lt;=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">total_price</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; filter: removed 2,392 rows (83%), 482 rows remaining</span></span>
+<span><span class="co">#&gt; select: dropped 67 variables (order_id, name, order_number, app_id, created_at, …)</span>¦)</span>
+<span><span class="co">#&gt; # A tibble: 482 x 1</span></span>
+<span><span class="co">#&gt;    total_price</span></span>
+<span><span class="co">#&gt;          &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1        10  </span></span>
+<span><span class="co">#&gt;  2        12  </span></span>
+<span><span class="co">#&gt;  3        15.0</span></span>
+<span><span class="co">#&gt;  4        14.9</span></span>
+<span><span class="co">#&gt;  ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For filtering on ranges, the <code>between()</code> function is an alternative:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># This is equivalent and a bit more efficient than a combination of &gt;= and &lt;=</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">between</span><span class="op">(</span><span class="va">total_price</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; filter: removed 2,392 rows (83%), 482 rows remaining</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="filtering-based-on-a-records-index" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="filtering-based-on-a-records-index">
+<span class="header-section-number">8.6</span> Filtering based on a record’s index</h2>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Keep only the first row</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Keep the first 10 rows</span></span>
+<span><span class="va">orders</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
 </div>
 
 
